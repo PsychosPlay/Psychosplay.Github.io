@@ -6,41 +6,89 @@
 		<link rel="stylesheet" type="text/css" href="styles.css" />
 	</head>
 <body class="HolyGrail">
+<!-- Colors
 
+Gold Coins: #DFBC00
+
+
+-->
   <div class="HolyGrail-body">
     <nav class="HolyGrail-nav">
 		<caption><h1> Resources:</h1></caption>
 
-		<h2> <FONT COLOR="#006600">$<span id="Money"></span> K | $<span id="MoneyPS"></span> K/Second </FONT></h2>
-		<h2> Power: <span id="MWh"></span> Mega-Watt Hours at $<span STYLE="=font-size: 14pt" id="MWhCost"></span>K |	$<span id="MWhMoney"></span>K/Second </h2>
-		<div id="GoldCoinResource" class="swHide">	<h2> <FONT COLOR="#DFBC00"><span id="GoldCoin"></span> Gold Coins</FONT></h2><br /><br /> </div>
+		<p>$<span id="Money"></span> K | $<span id="MoneyPS"></span> K/Second</p>
+		<p> Power: <span id="MWh"></span> Mega-Watt Hours at $<span id="MWhCost"></span>K |	$<span id="MWhMoney"></span>K/Second </p>
+		<div id="GoldCoinResource" class="swHide"><p><span id="GoldCoin"></span> Gold Coins</p></div>
 
-		<div id="IronResource" class="swHide">		<h2> <FONT COLOR="#666666"><span id="Iron"></span> Iron | <span id="IronPS"></span> Iron/Second | <span id="IronAntiContract"></span> Anti-Contracts</h2> </div>
-		<div id="RefIronResource" class="swHide">	<h2> <span id="RefIron"></span> Refined Iron | <span id="RefIronPS"></span> Refined Iron/Second | <span id="RefIronAntiContract"></span> Anti-Contracts</FONT></h2></div>
-		<div id="MotorResource" class="swHide">		<h2> <span id="Motor"></span> Motors | <span id="MotorPS"></span> Motors/Second | <span id="MotorAntiContract"></span> Anti-Contracts</FONT></h2> </div>
-		<div id="CarResource" class="swHide">		<h2> <span id="Car"></span> Cars | <span id="CarPS"></span> Cars/Second | <span id="CarAntiContract"></span> Anti-Contracts</FONT></h2> </div>
-		<div id="PlaneResource" class="swHide">		<h2> <span id="Plane"></span>/<span id="PlaneLimit"></span> Planes | <span id="PlanePS"></span> Planes in <span id="ThirtySecondCounter"></span> Seconds</h2><br /><br /> </div>
+		<!-- IRON Resource -->
+		<div id="IronResource" class="swHide">
+			<p><span id="Iron"></span> Iron | <span id="IronPS"></span>/s | <span id="IronAntiContract"></span> AC</p>
+		</div>
+		<div id="RefIronResource" class="swHide">
+			<p><span id="RefIron"></span> Refined Iron | <span id="RefIronPS"></span>/s | <span id="RefIronAntiContract"></span> AC</p>
+		</div>
+		<div id="MotorResource" class="swHide">
+			<p><span id="Motor"></span> Motors | <span id="MotorPS"></span>/s | <span id="MotorAntiContract"></span> AC</p>
+		</div>
+		<div id="CarResource" class="swHide">
+			<p><span id="Car"></span> Cars | <span id="CarPS"></span>/s | <span id="CarAntiContract"></span> AC</p>
+		</div>
+		<div id="PlaneResource" class="swHide">
+			<p><span id="Plane"></span>/<span id="PlaneLimit"></span> Planes | <span id="PlanePS"></span> Planes in <span id="ThirtySecondCounter"></span> Seconds</p>
+		</div>
+		
+		<!-- COAL Resource -->
+		<div id="CoalResource" class="swHide">
+			<p><span id="Coal"></span> Coal | <span id="CoalPS"></span>/s | <span id="CoalAntiContract"></span> AC</p>
+		</div>
+		<div id="SteelResource" class="swHide">
+			<p><span id="Steel"></span> Steel | <span id="SteelPS"></span>/s | <span id="SteelAntiContract"></span> AC</p>
+		</div>
+		<div id="MechPartResource" class="swHide">
+			<p><span id="MechPart"></span> Mechanical Parts | <span id="MechPartPS"></span>/s | <span id="MechPartAntiContract"></span> AC</p>
+		</div>
+		<div id="ACResource" class="swHide">
+			<p><span id="AC"></span> A/C Unit | <span id="ACPS"></span>/s | <span id="ACAntiContract"></span> AC</p>
+		</div>
 
-		<div id="CoalResource" class="swHide">		<h2> <Font><span id="Coal"></span> Coal | <span id="CoalPS"></span> Coal/Second | <span id="CoalAntiContract"></span> Anti-Contracts</Font></h2> </div>
-		<div id="SteelResource" class="swHide">		<h2> <FONT COLOR="#000066"><span id="Steel"></span> Steel | <span id="SteelPS"></span> Steel/Second | <span id="SteelAntiContract"></span> Anti-Contracts </FONT></h2> </div>
-		<div id="MechPartResource" class="swHide">	<h2> <span id="MechPart"></span> Mechanical Parts | <span id="MechPartPS"></span> Mechanical Parts/Second | <span id="MechPartAntiContract"></span> Anti-Contracts</FONT></h2> </div>
-		<div id="ACResource" class="swHide">		<h2> <span id="AC"></span> A/C Unit | <span id="ACPS"></span> A/C Units/Second | <span id="ACAntiContract"></span> Anti-Contracts</FONT></h2><br /><br /> </div>
+		<!-- COPPER Resource -->
+		<div id="CopperResource" class="swHide">
+			<p><span id="Copper"></span> Copper | <span id="CopperPS"></span>/s | <span id="CopperAntiContract"></span> AC</p>
+		</div>
+		<div id="RefCopperResource" class="swHide">
+			<p><span id="RefCopper"></span> Refined Copper | <span id="RefCopperPS"></span>/s | <span id="RefCopperAntiContract"></span> AC</p>
+		</div>
+		<div id="SpoolResource" class="swHide">
+			<p><span id="Spool"></span> Spools | <span id="SpoolPS"></span>/s | <span id="SpoolAntiContract"></span> AC</p>
+		</div>
+		<div id="ElectronicResource" class="swHide">
+			<p><span id="Electronic"></span> Electronics | <span id="ElectronicPS"></span>/s | <span id="ElecAntiContract"></span> AC</p>
+		</div>
 
-		<div id="CopperResource" class="swHide">	<h2> <FONT COLOR="#996600"><span id="Copper"></span> Copper | <span id="CopperPS"></span> Copper/Second | <span id="CopperAntiContract"></span> Anti-Contracts <br /> </div>
-		<div id="RefCopperResource" class="swHide">	<span id="RefCopper"></span> Refined Copper | <span id="RefCopperPS"></span> Refined Copper/Second | <span id="RefCopperAntiContract"></span> Anti-Contracts <br /> </div>
-		<div id="SpoolResource" class="swHide">		<span id="Spool"></span> Spools | <span id="SpoolPS"></span> Spools/Second | <span id="SpoolAntiContract"></span> Anti-Contracts </FONT><br /> </div>
-		<div id="ElectronicResource" class="swHide"><FONT COLOR="#006600"><span id="Electronic"></span> Electronics | <span id="ElectronicPS"></span> Electronics/Second | <span id="ElecAntiContract"></span> Anti-Contracts </FONT></h2><br /><br /> </div>
+		<!-- OIL Resource -->
+		<div id="OilResource" class="swHide">
+			<p><span id="Oil"></span> Oil | <span id="OilPS"></span>/s | <span id="OilAntiContract"></span> AC</p>
+		</div>
+		<div id="GasResource" class="swHide">
+			<p><span id="Gas"></span> Gas | <span id="GasPS"></span>/s | <span id="GasAntiContract"></span> AC</p>
+		</div>
+		<div id="PlasticResource" class="swHide">
+			<p><span id="Plastic"></span> Plastic | <span id="PlasticPS"></span>/s | <span id="PlasticAntiContract"></span> AC</p>
+		</div>
 
-		<div id="OilResource" class="swHide">		<h2> <FONT><span id="Oil"></span> Oil | <span id="OilPS"></span> Oil/Second | <span id="OilAntiContract"></span> Anti-Contracts  </FONT></h2> </div>
-		<div id="GasResource" class="swHide">		<h2> <FONT COLOR="#594d3e"><FONT><span id="Gas"></span> Gas | <span id="GasPS"></span> Gas/Second | <span id="GasAntiContract"></span> Anti-Contracts </FONT></h2> </div>
-		<div id="PlasticResource" class="swHide">	<h2> <FONT><span id="Plastic"></span> Plastic | <span id="PlasticPS"></span> Plastic/Second | <span id="PlasticAntiContract"></span> Anti-Contracts </FONT></h2><br /><br /> </div>
-
-		<div id="SandResource" class="swHide">		<h2> <FONT COLOR="#805500"><span id="Sand"></span> Sand | <span id="SandPS"></span> Sand/Second | <span id="SandAntiContract"></span> Anti-Contracts  </FONT></h2> </div>
-		<div id="GlassResource" class="swHide">		<h2> <FONT COLOR="#2952a3"><span id="Glass"></span> Glass | <span id="GlassPS"></span> Glass/Second | <span id="GlassAntiContract"></span> Anti-Contracts  </FONT></h2> </div>
-		<div id="LightbulbResource" class="swHide">	<h2> <FONT COLOR="#2952a3"><span id="Lightbulb"></span> Lightbulb | <span id="LightbulbPS"></span> Lightbulbs/Second | <span id="LightbulbAntiContract"></span> Anti-Contracts  </FONT></h2> </div>
+		<!-- SAND Resource -->
+		<div id="SandResource" class="swHide">
+			<p><span id="Sand"></span> Sand | <span id="SandPS"></span>/s | <span id="SandAntiContract"></span> AC</p>
+		</div>
+		<div id="GlassResource" class="swHide">
+			<p><span id="Glass"></span> Glass | <span id="GlassPS"></span>/s | <span id="GlassAntiContract"></span> AC</p>
+		</div>
+		<div id="LightbulbResource" class="swHide">
+			<p><span id="Lightbulb"></span> Lightbulb | <span id="LightbulbPS"></span>/s | <span id="LightbulbAntiContract"></span> AC</p>
+		</div>
 		
 		<!-- also add in an empty status text area -->
-		<br /><br />
+		
 		<h3><span id="tillautosave"> </span> seconds until autosave</h3>
 		<span id="status"></span>
 
@@ -77,413 +125,413 @@
 	</ul>
 
 		<div id="IronTab" class="tabcontent">
-			<!-- Iron --><FONT COLOR="#666666">
+			<!-- Iron -->
 			<table style="width:100%">
 			<tr>
 				<td>
-					<h1> Iron Mines (5 Iron/Second):</h1>
-					<h2> <span id="IronMine"></span> Iron Mines | Cost: $<span id="IronMineCost"></span> K </h2>
+					<h1>Iron Mines (5 Iron/Second):</h1>
+					<p><span id="IronMine"></span> Iron Mines | Cost: $<span id="IronMineCost"></span>K </p>
 					<input type="button" id="buyironmine" value="Buy 1" />
 				</td>
 				<td>
 					<h1> Iron Drill (20 Iron/1 Gas per Second):</h1>
-					<h2> <span id="IronDrill"></span> Iron Drills | Costs: 1 Drill | 1 Iron Mine</h2>
+					<p><span id="IronDrill"></span> Iron Drills | Costs: 1 Drill | 1 Iron Mine</p>
 					<input type="button" id="upgradeironMine" value="Upgrade 1" />
 				</td>
 			</tr>
 			</table>
-			<h1> Iron Contracts ($<span STYLE="font-size: 18px" id="IronContractMoney"></span>k/10 Iron):</h1>
-			<h2> <span id="IronContract"></span> Iron Contracts | <span id="IronContractIron"></span> Iron for $<span id="IronContractMoney"></span> K | Cost: <span id="IronContractCost"></span> Iron </h2>
-			<input type="button" id="buyironcontract" value="Start 1" /><input type="button" id="breakironcontract" value="Break 1" /> </FONT>
+			<h1> Iron Contracts ($<span id="IronContractMoney"></span>k/10 Iron):</h1>
+			<p><span id="IronContract"></span> Iron Contracts | <span id="IronContractIron"></span> Iron for $<span id="IronContractMoney"></span> K | Cost: <span id="IronContractCost"></span> Iron </p>
+			<input type="button" id="buyironcontract" value="Start 1" /><input type="button" id="breakironcontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
-			<!-- Refined Iron --><FONT COLOR="#666666">
+			<!-- Refined Iron -->
 			<table style="width:100%">
 			<tr>
 				<td>
 					<h1> Iron Refineries (20 Iron -> 10 Refined Iron/1MWh per Second):</h1>
-					<h2> <span id="IRefinery"></span> Iron Refineries | <span id="IRefineryIron"></span> Iron Spent per Second | Cost: $<span id="IRefineryCost"></span> K </h2>
+					<p><span id="IRefinery"></span> Iron Refineries | <span id="IRefineryIron"></span> Iron Spent per Second | Cost: $<span id="IRefineryCost"></span> K </p>
 					<input type="button" id="buyirefinery" value="Buy 1" /> 
 				</td>
 				<td>
 					<h1> Combined Iron Refinery and Smeltery (40 Iron -> 30 Refined Iron/1MWh per Second):</h1>
-					<h2> <span id="CombIRefinery"></span> Combined Iron Refineries | <span id="CombIRefineryIron"></span> Iron Spent per Second | Cost: 1 Furnace + 1 Iron Refinery</h2>
+					<p><span id="CombIRefinery"></span> Combined Iron Refineries | <span id="CombIRefineryIron"></span> Iron Spent per Second | Cost: 1 Furnace + 1 Iron Refinery</p>
 					<input type="button" id="upgradeirefinery" value="Upgrade 1" /> 
 				</td>
 			</tr>
 			</table>
 			
-			<h1> Refined Iron Contracts ($<span STYLE="font-size: 18px" id="RefIronContractMoney"></span>k/10 Refined Iron):</h1>
-			<h2> <span id="RefIronContract"></span> Refined Iron Contracts | <span id="RefIronContractRefIron"></span> Refined Iron for $<span id="RefIronContractMoney"></span> K | Cost: <span id="RefIronContractCost"></span> Refined Iron </h2>
-			<input type="button" id="buyrefironcontract" value="Start 1" /><input type="button" id="breakrefironcontract" value="Break 1" /> </FONT>
+			<h1> Refined Iron Contracts ($<span id="RefIronContractMoney"></span>k/10 Refined Iron):</h1>
+			<p><span id="RefIronContract"></span> Refined Iron Contracts | <span id="RefIronContractRefIron"></span> Refined Iron for $<span id="RefIronContractMoney"></span> K | Cost: <span id="RefIronContractCost"></span> Refined Iron </p>
+			<input type="button" id="buyrefironcontract" value="Start 1" /><input type="button" id="breakrefironcontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
-			<!-- Motor --><FONT COLOR="#666666">
+			<!-- Motor -->
 			<table style="width:100%">
 			<tr>
 				<td>
 					<h1> Motor Factory (10 Refined Iron + 5 Steel -> 1 Motor/3MWh per Second):</h1>
-					<h2> <span id="MotorFact"></span> Motor Factories | <span id="MotorFactRefIron"></span> Refined Iron Spent per Second | <span id="MotorFactSteel"></span> Steel Spent per Second | Cost: $<span id="MotorFactCost"></span> K </h2>
+					<p><span id="MotorFact"></span> Motor Factories | <span id="MotorFactRefIron"></span> Refined Iron Spent per Second | <span id="MotorFactSteel"></span> Steel Spent per Second | Cost: $<span id="MotorFactCost"></span> K </p>
 					<input type="button" id="buyMotorFact" value="Buy 1" /> 
 				</td>
 				<td>
 					<h1> Automated Motor Factory (30 Refined Iron + 15 Steel -> 3 Motor/15MWh per Second):</h1>
-					<h2> <span id="MotorFactArm"></span> Automated Motor Factories | <span id="MotorFactRefIron"></span> Refined Iron Spent per Second | <span id="MotorFactSteel"></span> Steel Spent per Second | Cost: 1 Motor Factory + 1 Automated Arm </h2>
+					<p><span id="MotorFactArm"></span> Automated Motor Factories | <span id="MotorFactRefIron"></span> Refined Iron Spent per Second | <span id="MotorFactSteel"></span> Steel Spent per Second | Cost: 1 Motor Factory + 1 Automated Arm </p>
 					<input type="button" id="UpgradeMotorFact" value="Upgrade 1" /> 				
 				</td>
 			</tr>
 			</table>
 			
-			<h1> Motor Contracts ($<span STYLE="font-size: 18px" id="MotorContractMoney"></span>k/Motor):</h1>
-			<h2> <span id="MotorContract"></span> Motor Contracts | <span id="MotorContractMotor"></span> Motor for $<span id="MotorContractMoney"></span> K | Cost: <span id="MotorContractCost"></span> Motor </h2>
-			<input type="button" id="buyMotorcontract" value="Start 1" /><input type="button" id="breakMotorcontract" value="Break 1" /> </FONT>
+			<h1> Motor Contracts ($<span id="MotorContractMoney"></span>k/Motor):</h1>
+			<p><span id="MotorContract"></span> Motor Contracts | <span id="MotorContractMotor"></span> Motor for $<span id="MotorContractMoney"></span> K | Cost: <span id="MotorContractCost"></span> Motor </p>
+			<input type="button" id="buyMotorcontract" value="Start 1" /><input type="button" id="breakMotorcontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
 		
-			<!-- Car --><FONT COLOR="#666666">
+			<!-- Car -->
 			<table style="width:100%">
 			<tr>
 				<td>
 					<h1> Car Factory (2 Motors + 10 Mechanical Parts + 5 Electronics + 5 Glass -> 2 Cars/3MWh per Second):</h1>
-					<h2> <span id="CarFact"></span> Car Factories | <span id="CarFactMotor"></span> Motors/Second | <span id="CarFactMechPart"></span> Mechanical Parts/Second | <span id="CarFactElec"></span> Electronics/Second | <span id="CarFactGlass"></span> Glass/Second | Cost: $<span id="CarFactCost"></span> K </h2>
+					<p><span id="CarFact"></span> Car Factories | <span id="CarFactMotor"></span> Motors/Second | <span id="CarFactMechPart"></span> Mechanical Parts/Second | <span id="CarFactElec"></span> Electronics/Second | <span id="CarFactGlass"></span> Glass/Second | Cost: $<span id="CarFactCost"></span> K </p>
 					<input type="button" id="buyCarFact" value="Buy 1" /> 
 				</td>
 				<td>
 					<h1> Automated Car Factory (6 Motors + 30 Mechanical Parts  + 15 Electronics + 15 Glass -> 6 Cars/15MWh per Second):</h1>
-					<h2> <span id="CarFactArm"></span> Automated Car Factories | <span id="CarFactRefIron"></span> Refined Iron Spent per Second | <span id="CarFactSteel"></span> Steel Spent per Second | Cost: 1 Car Factory + 2 Automated Arm </h2>
+					<p><span id="CarFactArm"></span> Automated Car Factories | <span id="CarFactRefIron"></span> Refined Iron Spent per Second | <span id="CarFactSteel"></span> Steel Spent per Second | Cost: 1 Car Factory + 2 Automated Arm </p>
 					<input type="button" id="UpgradeCarFact" value="Upgrade 1" /> 				
 				</td>
 			</tr>
 			</table>
 			
-			<h1> Car Contracts ($<span STYLE="font-size: 18px" id="CarContractMoney"></span>k/5 Cars):</h1>
-			<h2> <span id="CarContract"></span> Car Contracts | <span id="CarContractCar"></span> Car for $<span id="CarContractMoney"></span> K | Cost: <span id="CarContractCost"></span> Car </h2>
-			<input type="button" id="buyCarcontract" value="Start 1" /><input type="button" id="breakCarcontract" value="Break 1" /> </FONT>
+			<h1> Car Contracts ($<span id="CarContractMoney"></span>k/5 Cars):</h1>
+			<p><span id="CarContract"></span> Car Contracts | <span id="CarContractCar"></span> Car for $<span id="CarContractMoney"></span> K | Cost: <span id="CarContractCost"></span> Car </p>
+			<input type="button" id="buyCarcontract" value="Start 1" /><input type="button" id="breakCarcontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
 		
-			<!-- Plane --><FONT COLOR="#666666">
+			<!-- Plane -->
 			<h1> Plane Factory (10 Motors + 70 Mechanical Parts + 50 Electronics + 20 Glass -> 1 Planes/15MWh per 30 Seconds):</h1>
-			<h2> <span id="PlaneFact"></span> Plane Factories | <span id="PlaneFactMotor"></span> Motors/Second | <span id="PlaneFactMechPart"></span> Mechanical Parts/Second | <span id="PlaneFactElec"></span> Electronics/Second | <span id="PlaneFactGlass"></span> Glass/Second | Cost: $<span id="PlaneFactCost"></span> K + 1 Automated Car Factory</h2>
+			<p><span id="PlaneFact"></span> Plane Factories | <span id="PlaneFactMotor"></span> Motors/Second | <span id="PlaneFactMechPart"></span> Mechanical Parts/Second | <span id="PlaneFactElec"></span> Electronics/Second | <span id="PlaneFactGlass"></span> Glass/Second | Cost: $<span id="PlaneFactCost"></span> K + 1 Automated Car Factory</p>
 			<input type="button" id="buyPlaneFact" value="Buy 1" /> 
 			<br />================================================================================================================================================================================================================<br />
-			</FONT>
-		</div>
+			
+		</div><!-- /#IronTab -->
 
 		
 		
 		<div id="CoalTab" class="tabcontent">
-			<span STYLE="color: red; font-size: 26pt" id="GenCoalStatus2"></span>
+			<span id="GenCoalStatus2"></span>
 			<!-- Coal -->
 			<table style="width:100%">
 			<tr>
 				<td>
 					<h1> Coal Mines (3 Coal/Second):</h1>
-					<h2> <span id="CoalMine"></span> Coal Mines | Cost: $<span id="CoalMineCost"></span> K </h2>
+					<p><span id="CoalMine"></span> Coal Mines | Cost: $<span id="CoalMineCost"></span> K </p>
 					<input type="button" id="buyCoalmine" value="Buy 1" /> 
 				</td>
 				<td>
 					<h1> Coal Drill (12 Coal/1 Gas per Second):</h1>
-					<h2> <span id="CoalDrill"></span> Coal Drills | Costs: 1 Drill | 1 Coal Mine</h2>
+					<p><span id="CoalDrill"></span> Coal Drills | Costs: 1 Drill | 1 Coal Mine</p>
 					<input type="button" id="upgradeCoalMine" value="Upgrade 1" />
 				</td>
 			</tr>
 			</table>
-			<h1> Coal Contracts ($<span STYLE="font-size: 18px" id="CoalContractMoney"></span>k/10 Coal):</h1>
-			<h2> <span id="CoalContract"></span> Coal Contracts | <span id="CoalContractCoal"></span> Coal for $<span id="CoalContractMoney"></span> K | Cost: <span id="CoalContractCost"></span> Coal </h2>
+			<h1> Coal Contracts ($<span id="CoalContractMoney"></span>k/10 Coal):</h1>
+			<p><span id="CoalContract"></span> Coal Contracts | <span id="CoalContractCoal"></span> Coal for $<span id="CoalContractMoney"></span> K | Cost: <span id="CoalContractCost"></span> Coal </p>
 			<input type="button" id="buyCoalcontract" value="Start 1" /><input type="button" id="breakCoalcontract" value="Break 1" /> 
 			<br />================================================================================================================================================================================================================<br />
 	
-			<!-- Steel --><FONT COLOR="#000066">
+			<!-- Steel -->
 			<table style="width:100%">
 			<tr>
 				<td>
 					<h1> Steel Refineries (10 Iron + 9 Coal -> 10 Steel/1MWh per Second):</h1>
-					<h2> <span id="SRefinery"></span> Steel Refineries | <span id="SRefineryIron"></span> Iron Spent per Second | <span id="SRefineryCoal"></span> Coal Spent per Second | Cost: $<span id="SRefineryCost"></span> K </h2>
+					<p><span id="SRefinery"></span> Steel Refineries | <span id="SRefineryIron"></span> Iron Spent per Second | <span id="SRefineryCoal"></span> Coal Spent per Second | Cost: $<span id="SRefineryCost"></span> K </p>
 					<input type="button" id="buysrefinery" value="Buy 1" /> 
 				</td>
 				<td>
 					<h1> Combined Steel Refinery and Smeltery (30 Iron  + 27 Coal -> 30 Steel/1MWh per Second):</h1>
-					<h2> <span id="CombSRefinery"></span> Combined Steel Refineries | <span id="CombSRefineryIron"></span> Iron Spent per Second | <span id="CombSRefineryCoal"></span> Coal Spent per Second | Cost: 1 Furnace + 1 Steel Refinery</h2>
+					<p><span id="CombSRefinery"></span> Combined Steel Refineries | <span id="CombSRefineryIron"></span> Iron Spent per Second | <span id="CombSRefineryCoal"></span> Coal Spent per Second | Cost: 1 Furnace + 1 Steel Refinery</p>
 					<input type="button" id="upgradesrefinery" value="Upgrade 1" /> 
 				</td>
 			</tr>
 			</table>
-			<h1> Steel Contracts ($<span STYLE="font-size: 18px" id="SteelContractMoney"></span>k/10 Steel):</h1>
-			<h2> <span id="SteelContract"></span> Steel Contracts | <span id="SteelContractSteel"></span> Steel for $<span id="SteelContractMoney"></span> K | Cost: <span id="SteelContractCost"></span> Steel </h2>
-			<input type="button" id="buysteelcontract" value="Start 1" /><input type="button" id="breaksteelcontract" value="Break 1" /></FONT>
+			<h1> Steel Contracts ($<span id="SteelContractMoney"></span>k/10 Steel):</h1>
+			<p><span id="SteelContract"></span> Steel Contracts | <span id="SteelContractSteel"></span> Steel for $<span id="SteelContractMoney"></span> K | Cost: <span id="SteelContractCost"></span> Steel </p>
+			<input type="button" id="buysteelcontract" value="Start 1" /><input type="button" id="breaksteelcontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
 			<table style="width:100%">
 			<tr>
 				<td>
-					<!-- Mechanical Parts --><FONT COLOR="#666666">
+					<!-- Mechanical Parts -->
 					<h1> Mechanical Part Factory (5 Steel + 5 Refined Copper -> 4 Mechanical Parts/3MWh per Second):</h1>
-					<h2> <span id="MechPartFact"></span> Mechanical Part Factories | <span id="MechPartFactSteel"></span> Steel Spent per Second | <span id="MechPartFactRefCopper"></span> Refined Copper Spent per Second | Cost: $<span id="MechPartFactCost"></span> K </h2>
+					<p><span id="MechPartFact"></span> Mechanical Part Factories | <span id="MechPartFactSteel"></span> Steel Spent per Second | <span id="MechPartFactRefCopper"></span> Refined Copper Spent per Second | Cost: $<span id="MechPartFactCost"></span> K </p>
 					<input type="button" id="buyMechPartFact" value="Buy 1" /> 
 				</td>
 				<td>
-					<!-- Mechanical Parts --><FONT COLOR="#666666">
+					<!-- Mechanical Parts -->
 					<h1> Automated Mechanical Part Factory (15 Steel + 15 Refined Copper -> 12 Mechanical Parts/15MWh per Second):</h1>
-					<h2> <span id="MechPartFactArm"></span> Mechanical Part Factories | <span id="MechPartFactSteel"></span> Steel Spent per Second | <span id="MechPartFactRefCopper"></span> Refined Copper Spent per Second | Cost: 1 Mechanical Part Factory + 1 Automated Arm </h2>
+					<p><span id="MechPartFactArm"></span> Mechanical Part Factories | <span id="MechPartFactSteel"></span> Steel Spent per Second | <span id="MechPartFactRefCopper"></span> Refined Copper Spent per Second | Cost: 1 Mechanical Part Factory + 1 Automated Arm </p>
 					<input type="button" id="UpgradeMechPartFact" value="Upgrade 1" /> 
 				</td>
 			</tr>
 			</table>
 			<br />================================================================================================================================================================================================================<br />
-			<!-- Motor --><FONT COLOR="#666666">
+			<!-- Motor -->
 			<table style="width:100%">
 			<tr>
 				<td>
 					<h1> A/C Unit Factory (10 Mechanical Parts + 2 Motors + 1 Spool of Wire -> 1 A/C Unit/3MWh per 2 Second):</h1>
-					<h2> <span id="ACFact"></span> A/C Unit Factories | <span id="ACFactMechPart"></span> Mechanical Parts Spent per Second | <span id="ACFactMotor"></span> Motors Spent per Second | <span id="ACFactSpool"></span> Spools Spent per Second | Cost: $<span id="ACFactCost"></span> K </h2>
+					<p><span id="ACFact"></span> A/C Unit Factories | <span id="ACFactMechPart"></span> Mechanical Parts Spent per Second | <span id="ACFactMotor"></span> Motors Spent per Second | <span id="ACFactSpool"></span> Spools Spent per Second | Cost: $<span id="ACFactCost"></span> K </p>
 					<input type="button" id="buyACFact" value="Buy 1" /> 
 				</td>
 				<td>
-					<!-- A/C Units --><FONT COLOR="#666666">
+					<!-- A/C Units -->
 					<h1> Automated A/C Unit Factory (15 Steel + 15 Refined Copper -> 12 A/C Units/15MWh per Second):</h1>
-					<h2> <span id="ACFactArm"></span> Automated A/C Unit Factories | <span id="ACFactSteel"></span> Steel Spent per Second | <span id="ACFactRefCopper"></span> Refined Copper Spent per Second | Cost: 1 A/C Unit Factory + 1 Automated Arm </h2>
+					<p><span id="ACFactArm"></span> Automated A/C Unit Factories | <span id="ACFactSteel"></span> Steel Spent per Second | <span id="ACFactRefCopper"></span> Refined Copper Spent per Second | Cost: 1 A/C Unit Factory + 1 Automated Arm </p>
 					<input type="button" id="UpgradeACFact" value="Upgrade 1" /> 
 				</td>
 			</tr>
 			</table>					
 					
-			<h1> A/C Contracts ($<span STYLE="font-size: 18px" id="ACContractMoney"></span>k/A/C Unit):</h1>
-			<h2> <span id="ACContract"></span> A/C Unit Contracts | <span id="ACContractAC"></span> A/C Units for $<span id="ACContractMoney"></span> K | Cost: <span id="ACContractCost"></span> A/C Units </h2>
-			<input type="button" id="buyACcontract" value="Start 1" /><input type="button" id="breakACcontract" value="Break 1" /> </FONT>
+			<h1> A/C Contracts ($<span id="ACContractMoney"></span>k/A/C Unit):</h1>
+			<p><span id="ACContract"></span> A/C Unit Contracts | <span id="ACContractAC"></span> A/C Units for $<span id="ACContractMoney"></span> K | Cost: <span id="ACContractCost"></span> A/C Units </p>
+			<input type="button" id="buyACcontract" value="Start 1" /><input type="button" id="breakACcontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
-		</div>
+		</div><!-- /#CoalTab -->
 
 		
 		<div id="CopperTab" class="tabcontent">
-			<span STYLE="color: red; font-size: 26pt" id="GenCopperStatus2"></span>
-			<!-- Copper --><FONT COLOR="#996600">
+			<span id="GenCopperStatus2"></span>
+			<!-- Copper -->
 			<table style="width:100%">
 			<tr>
 				<td>
 					<h1> Copper Mines (5 Copper/Second):</h1>
-					<h2> <span id="CopperMine"></span> Copper Mines | Cost: $<span id="CopperMineCost"></span> K </h2>
+					<p><span id="CopperMine"></span> Copper Mines | Cost: $<span id="CopperMineCost"></span> K </p>
 					<input type="button" id="buyCoppermine" value="Buy 1" /> 
 				</td>
 				<td>
 					<h1> Copper Drill (20 Copper/1 Gas per Second):</h1>
-					<h2> <span id="CopperDrill"></span> Copper Drills | Costs: 1 Drill | 1 Copper Mine</h2>
+					<p><span id="CopperDrill"></span> Copper Drills | Costs: 1 Drill | 1 Copper Mine</p>
 					<input type="button" id="upgradeCopperMine" value="Upgrade 1" />
 				</td>
 			</tr>
 			</table>
-			<h1> Copper Contracts ($<span STYLE="font-size: 18px" id="CopperContractMoney"></span>k/10 Copper):</h1>
-			<h2> <span id="CopperContract"></span> Copper Contracts | <span id="CopperContractCopper"></span> Copper for $<span id="CopperContractMoney"></span> K | Cost: <span id="CopperContractCost"></span> Copper </h2>
-			<input type="button" id="buyCoppercontract" value="Start 1" /><input type="button" id="breakCoppercontract" value="Break 1" /> </FONT>
+			<h1> Copper Contracts ($<span id="CopperContractMoney"></span>k/10 Copper):</h1>
+			<p><span id="CopperContract"></span> Copper Contracts | <span id="CopperContractCopper"></span> Copper for $<span id="CopperContractMoney"></span> K | Cost: <span id="CopperContractCost"></span> Copper </p>
+			<input type="button" id="buyCoppercontract" value="Start 1" /><input type="button" id="breakCoppercontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
-			<!-- Refined Copper --><FONT COLOR="#996600">
+			<!-- Refined Copper -->
 			<table style="width:100%">
 			<tr>
 				<td>
 					<h1> Copper Refineries (15 Copper -> 10 Refined Copper/1MWh per Second):</h1>
-					<h2> <span id="CRefinery"></span> Copper Refineries | <span id="CRefineryCopper"></span> Copper Spent per Second | Cost: $<span id="CRefineryCost"></span> K </h2>
+					<p><span id="CRefinery"></span> Copper Refineries | <span id="CRefineryCopper"></span> Copper Spent per Second | Cost: $<span id="CRefineryCost"></span> K </p>
 					<input type="button" id="buyCRefinery" value="Buy 1" /> 
 				</td>
 				<td>
 					<h1> Combined Copper Refinery and Smeltery (30 Copper -> 30 Refined Copper/1MWh per Second):</h1>
-					<h2> <span id="CombCRefinery"></span> Combined Copper Refineries | <span id="CombCRefineryCopper"></span> Copper Spent per Second | Cost: 1 Furnace + 1 Copper Refinery</h2>
+					<p><span id="CombCRefinery"></span> Combined Copper Refineries | <span id="CombCRefineryCopper"></span> Copper Spent per Second | Cost: 1 Furnace + 1 Copper Refinery</p>
 					<input type="button" id="upgradecrefinery" value="Upgrade 1" /> 
 				</td>
 			</tr>
 			</table>
-			<h1> Refined Copper Contracts ($<span STYLE="font-size: 18px" id="RefCopperContractMoney"></span>k/10 Refined Copper):</h1>
-			<h2> <span id="RefCopperContract"></span> Refined Copper Contracts | <span id="RefCopperContractRefCopper"></span> Refined Copper for $<span id="RefCopperContractMoney"></span> K | Cost: <span id="RefCopperContractCost"></span> Refined Copper </h2>
-			<input type="button" id="buyrefCoppercontract" value="Start 1" /><input type="button" id="breakRefCoppercontract" value="Break 1" /> </FONT>
+			<h1> Refined Copper Contracts ($<span id="RefCopperContractMoney"></span>k/10 Refined Copper):</h1>
+			<p><span id="RefCopperContract"></span> Refined Copper Contracts | <span id="RefCopperContractRefCopper"></span> Refined Copper for $<span id="RefCopperContractMoney"></span> K | Cost: <span id="RefCopperContractCost"></span> Refined Copper </p>
+			<input type="button" id="buyrefCoppercontract" value="Start 1" /><input type="button" id="breakRefCoppercontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
 
-			<!-- Spooler --><FONT COLOR="#996600">
+			<!-- Spooler -->
 			<table style="width:100%">
 			<tr>
 				<td>
 					<h1> Spoolers (50 Refined Copper -> 10 Spools of Wire/3MWh per Second):</h1>
-					<h2> <span id="Spooler"></span> Spoolers | <span id="SpoolerRefCopper"></span> Refined Copper Spent per Second | Cost: $<span id="SpoolerCost"></span> K </h2>
+					<p><span id="Spooler"></span> Spoolers | <span id="SpoolerRefCopper"></span> Refined Copper Spent per Second | Cost: $<span id="SpoolerCost"></span> K </p>
 					<input type="button" id="buySpooler" value="Buy 1" /> 
 				</td>
 				<td>
 					<!-- Spoolers -->
 					<h1> Automated Spooler (150 Refined Copper -> 30 Spoolers/15MWh per Second):</h1>
-					<h2> <span id="SpoolerArm"></span> Automated Spooler Factories | <span id="SpoolerFactSteel"></span> Steel Spent per Second | <span id="SpoolerFactRefCopper"></span> Refined Copper Spent per Second | Cost: 1 Spooler + 1 Automated Arm </h2>
+					<p><span id="SpoolerArm"></span> Automated Spooler Factories | <span id="SpoolerFactSteel"></span> Steel Spent per Second | <span id="SpoolerFactRefCopper"></span> Refined Copper Spent per Second | Cost: 1 Spooler + 1 Automated Arm </p>
 					<input type="button" id="UpgradeSpooler" value="Upgrade 1" /> 
 				</td>
 			</tr>
 			</table>
 			
-			<h1> Spool Contracts ($<span STYLE="font-size: 18px" id="SpoolContractMoney"></span>k/10 Spools):</h1>
-			<h2> <span id="SpoolContract"></span> Spool Contracts | <span id="SpoolContractSpool"></span> Spool for $<span id="SpoolContractMoney"></span> K | Cost: <span id="SpoolContractCost"></span> Spools </h2>
-			<input type="button" id="buySpoolcontract" value="Start 1" /><input type="button" id="breakSpoolcontract" value="Break 1" /> </FONT>
+			<h1> Spool Contracts ($<span id="SpoolContractMoney"></span>k/10 Spools):</h1>
+			<p><span id="SpoolContract"></span> Spool Contracts | <span id="SpoolContractSpool"></span> Spool for $<span id="SpoolContractMoney"></span> K | Cost: <span id="SpoolContractCost"></span> Spools </p>
+			<input type="button" id="buySpoolcontract" value="Start 1" /><input type="button" id="breakSpoolcontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
-			<!-- ElecFact --><FONT COLOR="#006600">
+			<!-- ElecFact -->
 			<table style="width:100%">
 			<tr>
 				<td>
 					<h1> Electronic Factories (2 Spools + 10 Plastic -> 5 Electronics/3MWh per Second):</h1>
-					<h2> <span id="ElecFact"></span> Electronic Factories | <span id="ElecFactSpool"></span> Spool Spent per Second | <span id="ElecFactPlastic"></span> Plastic Spent per Second | Cost: $<span id="ElecFactCost"></span> K </h2>
+					<p><span id="ElecFact"></span> Electronic Factories | <span id="ElecFactSpool"></span> Spool Spent per Second | <span id="ElecFactPlastic"></span> Plastic Spent per Second | Cost: $<span id="ElecFactCost"></span> K </p>
 					<input type="button" id="buyElecFact" value="Buy 1" /> 
 				</td>
 				<td>
 					<!-- Electronics -->
 					<h1> Automated Electronic Factory (6 Spools + 30 Plastic -> 15 Electronics/15MWh per Second):</h1>
-					<h2> <span id="ElecFactArm"></span> Automated Electronic Factories | <span id="ElecFactSteel"></span> Steel Spent per Second | <span id="ElecFactRefCopper"></span> Refined Copper Spent per Second | Cost: 1 Electronic Factory + 1 Automated Arm </h2>
+					<p><span id="ElecFactArm"></span> Automated Electronic Factories | <span id="ElecFactSteel"></span> Steel Spent per Second | <span id="ElecFactRefCopper"></span> Refined Copper Spent per Second | Cost: 1 Electronic Factory + 1 Automated Arm </p>
 					<input type="button" id="UpgradeElecFact" value="Upgrade 1" /> 
 				</td>
 			</tr>
 			</table>
 			
-			<h1> Electronic Contracts ($<span STYLE="font-size: 18px" id="ElecContractMoney"></span>k/10 Electronics):</h1>
-			<h2> <span id="ElecContract"></span> Electronic Contracts | <span id="ElecContractElectronic"></span> Electronic for $<span id="ElecContractMoney"></span> K | Cost: <span id="ElecContractCost"></span> Electronics </h2>
-			<input type="button" id="buyEleccontract" value="Start 1" /><input type="button" id="breakEleccontract" value="Break 1" /></FONT>
+			<h1> Electronic Contracts ($<span id="ElecContractMoney"></span>k/10 Electronics):</h1>
+			<p><span id="ElecContract"></span> Electronic Contracts | <span id="ElecContractElectronic"></span> Electronic for $<span id="ElecContractMoney"></span> K | Cost: <span id="ElecContractCost"></span> Electronics </p>
+			<input type="button" id="buyEleccontract" value="Start 1" /><input type="button" id="breakEleccontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
-		</div>
+		</div><!-- /#CopperTab -->
 
 		
 		<div id="OilTab" class="tabcontent">
-			<span STYLE="color: red; font-size: 26pt" id="GenOilStatus2"></span>
+			<span id="GenOilStatus2"></span>
 			<!-- Oil -->
 			<h1> Oil Well (10 Oil/Second):</h1>
-			<h2> <span id="OilMine"></span> Oil Well | Cost: $<span id="OilMineCost"></span> K </h2>
+			<p><span id="OilMine"></span> Oil Well | Cost: $<span id="OilMineCost"></span> K </p>
 			<input type="button" id="buyOilmine" value="Buy 1" />
 			<br />================================================================================================================================================================================================================<br />
 			<table style="width:100%">
 			<tr>
 				<td>
-					<!-- Gas --><FONT COLOR="#594d3e">
+					<!-- Gas -->
 					<h1> Gas Refineries (8 Oil -> 4 Gas/1MWh per Second):</h1>
-					<h2> <span id="GRefinery"></span> Gas Refineries | <span id="GRefineryOil"></span> Oil Spent per Second | Cost: $<span id="GRefineryCost"></span> K </h2>
+					<p><span id="GRefinery"></span> Gas Refineries | <span id="GRefineryOil"></span> Oil Spent per Second | Cost: $<span id="GRefineryCost"></span> K </p>
 					<input type="button" id="buyGRefinery" value="Buy 1" /> 
-					<h1> Gas Contracts ($<span STYLE="font-size: 18px" id="GasContractMoney"></span>k/10 Gas):</h1>
-					<h2> <span id="GasContract"></span> Gas Contracts | <span id="GasContractGas"></span> Gas for $<span id="GasContractMoney"></span> K | Cost: <span id="GasContractCost"></span> Gas </h2>
-					<input type="button" id="buyGascontract" value="Start 1" /><input type="button" id="breakGascontract" value="Break 1" /> </FONT>
+					<h1> Gas Contracts ($<span id="GasContractMoney"></span>k/10 Gas):</h1>
+					<p><span id="GasContract"></span> Gas Contracts | <span id="GasContractGas"></span> Gas for $<span id="GasContractMoney"></span> K | Cost: <span id="GasContractCost"></span> Gas </p>
+					<input type="button" id="buyGascontract" value="Start 1" /><input type="button" id="breakGascontract" value="Break 1" />
 				</td>
 				<td>
 					<!-- Plastic -->
 					<h1> Plastic Refineries (12 Oil -> 4 Plastic/1MWh per Second):</h1>
-					<h2> <span id="PRefinery"></span> Plastic Refineries | <span id="PRefineryOil"></span> Oil Spent per Second | Cost: $<span id="PRefineryCost"></span> K </h2>
+					<p><span id="PRefinery"></span> Plastic Refineries | <span id="PRefineryOil"></span> Oil Spent per Second | Cost: $<span id="PRefineryCost"></span> K </p>
 					<input type="button" id="buyPRefinery" value="Buy 1" /> 
-					<h1> Plastic Contracts ($<span STYLE="font-size: 18px" id="PlasticContractMoney"></span>k/10 Plastic):</h1>
-					<h2> <span id="PlasticContract"></span> Plastic Contracts | <span id="PlasticContractPlastic"></span> Plastic for $<span id="PlasticContractMoney"></span> K | Cost: <span id="PlasticContractCost"></span> Plastic </h2>
-					<input type="button" id="buyPlasticcontract" value="Start 1" /><input type="button" id="breakPlasticcontract" value="Break 1" /> </FONT>
+					<h1> Plastic Contracts ($<span id="PlasticContractMoney"></span>k/10 Plastic):</h1>
+					<p><span id="PlasticContract"></span> Plastic Contracts | <span id="PlasticContractPlastic"></span> Plastic for $<span id="PlasticContractMoney"></span> K | Cost: <span id="PlasticContractCost"></span> Plastic </p>
+					<input type="button" id="buyPlasticcontract" value="Start 1" /><input type="button" id="breakPlasticcontract" value="Break 1" />
 				</td>
 			</tr>
 			</table>
 			<br />================================================================================================================================================================================================================<br />
 			
-		</div>
+		</div><!-- /#OilTab -->
 
 		
 		<div id="GlassTab" class="tabcontent">
-			<span STYLE="color: red; font-size: 26pt" id="GenGlassStatus2"></span>
+			<span id="GenGlassStatus2"></span>
 			<!-- Sand -->
 			<h1> Shifter (5 Sand/3MWh per Second):</h1>
-			<h2> <span id="Shifter"></span> Shifters | Cost: <span id="ShifterMotorCost"></span> Motor + <span id="ShifterMechCost"></span> Mechanical Parts </h2>
+			<p><span id="Shifter"></span> Shifters | Cost: <span id="ShifterMotorCost"></span> Motor + <span id="ShifterMechCost"></span> Mechanical Parts </p>
 			<input type="button" id="buyShifter" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
-			<!-- Glass --><FONT COLOR="#2952a3">
+			<!-- Glass -->
 			<h1> Glass Furnaces (15 Sand -> 5 Glass/Second):</h1>
-			<h2> <span id="GlassFurnace"></span> Glass Furnaces | <span id="GlassFurnaceSand"></span> Sand Spent per Second | Cost: 1 Furnace </h2>
+			<p><span id="GlassFurnace"></span> Glass Furnaces | <span id="GlassFurnaceSand"></span> Sand Spent per Second | Cost: 1 Furnace </p>
 			<input type="button" id="buyGlassFurnace" value="Allocate 1" /> 
 			
-			<h1> Glass Contracts ($<span STYLE="font-size: 18px" id="GlassContractMoney"></span>k/10 Glass):</h1>
-			<h2> <span id="GlassContract"></span> Glass Contracts | <span id="GlassContractGlass"></span> Glass for $<span id="GlassContractMoney"></span> K | Cost: <span id="GlassContractCost"></span> Glass </h2>
-			<input type="button" id="buyGlasscontract" value="Start 1" /><input type="button" id="breakGlasscontract" value="Break 1" /> </FONT>
+			<h1> Glass Contracts ($<span id="GlassContractMoney"></span>k/10 Glass):</h1>
+			<p><span id="GlassContract"></span> Glass Contracts | <span id="GlassContractGlass"></span> Glass for $<span id="GlassContractMoney"></span> K | Cost: <span id="GlassContractCost"></span> Glass </p>
+			<input type="button" id="buyGlasscontract" value="Start 1" /><input type="button" id="breakGlasscontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
-			<!-- LightbulbFact --><FONT COLOR="#2952a3">
+			<!-- LightbulbFact -->
 			<table style="width:100%">
 			<tr>
 				<td>
 					<h1> Lightbulb Factories (1 Spool + 10 Glass -> 10 Lightbulbs/3MWh per Second):</h1>
-					<h2> <span id="LightbulbFact"></span> Lightbulb Factories | <span id="LightbulbFactSpool"></span> Spools Spent per Second | <span id="LightbulbFactGlass"></span> Glass Spent per Second | Cost: $<span id="LightbulbFactCost"></span> K </h2>
+					<p><span id="LightbulbFact"></span> Lightbulb Factories | <span id="LightbulbFactSpool"></span> Spools Spent per Second | <span id="LightbulbFactGlass"></span> Glass Spent per Second | Cost: $<span id="LightbulbFactCost"></span> K </p>
 					<input type="button" id="buyLightbulbFact" value="Buy 1" /> 
 				</td>
 				<td>
 					<!-- Lightbulbs -->
 					<h1> Automated Lightbulb Factory (3 Spools + 30 Glass -> 30 Lightbulbs/15MWh per Second):</h1>
-					<h2> <span id="LightbulbFactArm"></span> Lightbulb Factories | <span id="LightbulbFactSteel"></span> Steel Spent per Second | <span id="LightbulbFactRefCopper"></span> Refined Copper Spent per Second | Cost: 1 Lightbulb Factory + 1 Automated Arm </h2>
+					<p><span id="LightbulbFactArm"></span> Lightbulb Factories | <span id="LightbulbFactSteel"></span> Steel Spent per Second | <span id="LightbulbFactRefCopper"></span> Refined Copper Spent per Second | Cost: 1 Lightbulb Factory + 1 Automated Arm </p>
 					<input type="button" id="UpgradeLightbulbFact" value="Upgrade 1" /> 
 				</td>
 			</tr>
 			</table>
 			
-			<h1> Lightbulb Contracts ($<span STYLE="font-size: 18px" id="LightbulbContractMoney"></span>K/10 Lightbulbs):</h1>
-			<h2> <span id="LightbulbContract"></span> Lightbulb Contracts | <span id="LightbulbContractLightbulb"></span> Lightbulb for $<span id="LightbulbContractMoney"></span> K | Cost: <span id="LightbulbContractCost"></span> Lightbulbs </h2>
-			<input type="button" id="buyLightbulbcontract" value="Start 1" /><input type="button" id="breakLightbulbcontract" value="Break 1" /></FONT>
+			<h1> Lightbulb Contracts ($<span id="LightbulbContractMoney"></span>K/10 Lightbulbs):</h1>
+			<p><span id="LightbulbContract"></span> Lightbulb Contracts | <span id="LightbulbContractLightbulb"></span> Lightbulb for $<span id="LightbulbContractMoney"></span> K | Cost: <span id="LightbulbContractCost"></span> Lightbulbs </p>
+			<input type="button" id="buyLightbulbcontract" value="Start 1" /><input type="button" id="breakLightbulbcontract" value="Break 1" />
 			<br />================================================================================================================================================================================================================<br />
-		</div>
+		</div><!-- /#GlassTab -->
 
 		
 		<div id="WorkshopTab" class="tabcontent">
-			<span STYLE="color: red; font-size: 26pt" id="WorkshopStatus2"></span>
+			<span id="WorkshopStatus2"></span>
 			<h1> Drill:</h1>
-			<h2> <span id="Drill"></span> Drills | Cost: <span id="DrillMotorCost"></span> Motor + <span id="DrillMechCost"></span> Mechanical Parts </h2>
+			<p><span id="Drill"></span> Drills | Cost: <span id="DrillMotorCost"></span> Motor + <span id="DrillMechCost"></span> Mechanical Parts </p>
 			<input type="button" id="builddrill" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1> Furnace:</h1>
-			<h2> <span id="Furnace"></span> Furnaces | Cost: <span id="FurnaceCost"></span> Refined Iron</h2>
+			<p><span id="Furnace"></span> Furnaces | Cost: <span id="FurnaceCost"></span> Refined Iron</p>
 			<input type="button" id="buildFurnace" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1> Automated Factory Arm:</h1>
-			<h2> <span id="Arm"></span> Automated Arms | Cost: <span id="ArmMotorCost"></span> Motor + <span id="ArmMechCost"></span> Mechanical Parts  + <span id="ArmElecCost"></span> Electronics </h2> 
+			<p><span id="Arm"></span> Automated Arms | Cost: <span id="ArmMotorCost"></span> Motor + <span id="ArmMechCost"></span> Mechanical Parts  + <span id="ArmElecCost"></span> Electronics </p> 
 			<input type="button" id="buildarm" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1> Solar Array:</h1>
-			<h2> <span id="SolarArray"></span> Solar Array | Cost: <span id="SolarArrayElecCost"></span> Electronics + <span id="SolarArrayGlassCost"></span> Glass </h2> 
+			<p><span id="SolarArray"></span> Solar Array | Cost: <span id="SolarArrayElecCost"></span> Electronics + <span id="SolarArrayGlassCost"></span> Glass </p> 
 			<input type="button" id="buildSolarArray" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
-		</div>
+		</div><!-- /#WorkshopTab -->
 		
 		
 		<div id="PowerTab" class="tabcontent">
-			<span STYLE="color: red; font-size: 26pt" id="GenPowerStatus2"></span>
+			<span id="GenPowerStatus2"></span>
 			<h1 title="These babies stretch for miles!"> Power Lines (Increases the Cost of Power):</h1>
-			<h2> <span id="PowerLine"></span> Power Lines | Cost: $<span id="PowerLineCost"></span>K</h2>
+			<p><span id="PowerLine"></span> Power Lines | Cost: $<span id="PowerLineCost"></span>K</p>
 			<input type="button" id="buyPowerLine" value="Buy 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1 title="Harness the power of carbon!"> Coal Plant (Produces 60 MWh/30 Coal per Second):</h1>
-			<h2> <span id="CoalPlant"></span> Coal Plants | Cost: 1 Empty Lot + $<span id="CoalPlantCost"></span>K</h2>
+			<p><span id="CoalPlant"></span> Coal Plants | Cost: 1 Empty Lot + $<span id="CoalPlantCost"></span>K</p>
 			<input type="button" id="buyCoalPlant" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
-			<FONT COLOR="#2952a3"><h1 title="Renewable Engery!"> Solar Plant (Produces 5 MWh/Second):</h1>
-			<h2> <span id="SolarPlant"></span> Solar Plant | Cost: 1 Empty Lot + <span id="SolarPlantCost"></span> Solar Arrays </h2>
-			<input type="button" id="buildSolarPlant" value="Build 1" /> </FONT>
+			<h1 title="Renewable Engery!"> Solar Plant (Produces 5 MWh/Second):</h1>
+			<p><span id="SolarPlant"></span> Solar Plant | Cost: 1 Empty Lot + <span id="SolarPlantCost"></span> Solar Arrays </p>
+			<input type="button" id="buildSolarPlant" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
-			<FONT COLOR="#006600"><h1 title="We don't know how it works, but the regulations make it expensive"> Nuclear Plant (Produces 150 MWh/Second):</h1>
-			<h2> <span id="NuclearPlant"></span> Nuclear Plants | Cost: 1 Empty Lot + $<span id="NuclearPlantCost"></span>K</h2>
-			<input type="button" id="buyNuclearPlant" value="Build 1" /> </FONT>
+			<h1 title="We don't know how it works, but the regulations make it expensive"> Nuclear Plant (Produces 150 MWh/Second):</h1>
+			<p><span id="NuclearPlant"></span> Nuclear Plants | Cost: 1 Empty Lot + $<span id="NuclearPlantCost"></span>K</p>
+			<input type="button" id="buyNuclearPlant" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
-		</div>
+		</div><!-- /#PowerTab -->
 		
 		
 		<div id="BuildingTab" class="tabcontent">
-			<span STYLE="color: red; font-size: 26pt" id="GenBuildingStatus2"></span>
+			<span id="GenBuildingStatus2"></span>
 			<h1> Land:</h1>
-			<h2> <span id="Land"></span> Empty Lots | Cost: $<span id="LandCost"></span>K</h2>
+			<p><span id="Land"></span> Empty Lots | Cost: $<span id="LandCost"></span>K</p>
 			<input type="button" id="buyLand" value="Buy 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1 title="We call it personal for tax reasons, we hire people to build the stuff."> Personal Workshop (Opens Workshop Tab | Reduces Workshop Costs by 15% | 2 MWh/Second):</h1>
-			<h2> <span id="Workshop"></span> Workshops | Cost: 1 Empty Lot + $<span id="WorkshopCost"></span>K</h2>
+			<p><span id="Workshop"></span> Workshops | Cost: 1 Empty Lot + $<span id="WorkshopCost"></span>K</p>
 			<input type="button" id="buyWorkshop" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1 title="Selling is just politics, and all politicians need an office."> Office (Increases Contract Prices | Warning: Increase Anti-Contract Prices | 2 MWh/Second):</h1>
-			<h2> <span id="Office"></span> Offices | Cost: 1 Empty Lot + $<span id="OfficeCost"></span>K</h2>
+			<p><span id="Office"></span> Offices | Cost: 1 Empty Lot + $<span id="OfficeCost"></span>K</p>
 			<input type="button" id="buyOffice" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 
 		
-		</div>
+		</div><!-- /#BuildingTab -->
 		
 		
 		
@@ -530,34 +578,34 @@
 			</table>
 		
 			<h1> Apartments (Houses 15 Workers | 2 MWh/Second):</h1>
-			<h2> <span id="Apartment"></span> Apartments | Cost: 1 Empty Lot + $<span id="ApartmentCost"></span>K</h2>
+			<p><span id="Apartment"></span> Apartments | Cost: 1 Empty Lot + $<span id="ApartmentCost"></span>K</p>
 			<input type="button" id="buyApartment" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			
-					<!-- Cons Parts --><FONT COLOR="#666666">
+					<!-- Cons Parts -->
 					<h1> Construction Part Factory (20 Steel -> 5 Construction Parts/3MWh per Second):</h1>
-					<h2> <span id="ConsPartFact"></span> Construction Part Factories | <span id="ConsPartFactSteel"></span> Steel Spent per Second | Cost: $<span id="ConsPartFactCost"></span> K </h2>
-					<input type="button" id="buyConsPartFact" value="Buy 1" />  </FONT>
-		<h2> <span id="ConsPart"></span> Constrution Parts | <span id="ConsPartPS"></span> Construction Parts/Second | <span id="ConsPartAntiContract"></span> Anti-Contracts</FONT></h2>
-		</div>
+					<p><span id="ConsPartFact"></span> Construction Part Factories | <span id="ConsPartFactSteel"></span> Steel Spent per Second | Cost: $<span id="ConsPartFactCost"></span> K </p>
+					<input type="button" id="buyConsPartFact" value="Buy 1" />
+		<p><span id="ConsPart"></span> Constrution Parts | <span id="ConsPartPS"></span> Construction Parts/Second | <span id="ConsPartAntiContract"></span> AC</p>
+		</div><!-- /#LandTab -->
 		
 	
 		<div id="CarsTab" class="tabcontent">
 		
-			<h1 title="Screw Wholesale! Lets get into retail!"> Car Dealership ($<span STYLE="font-size: 18px" id="CarDealerMoney"></span>K/10 Cars | 2 MWh/Second):</h1>
-			<h2> <span id="Dealership"></span> Dealerships | Cost: 1 Empty Lot + $<span id="DealershipCost"></span>K</h2>
+			<h1 title="Screw Wholesale! Lets get into retail!"> Car Dealership ($<span id="CarDealerMoney"></span>K/10 Cars | 2 MWh/Second):</h1>
+			<p><span id="Dealership"></span> Dealerships | Cost: 1 Empty Lot + $<span id="DealershipCost"></span>K</p>
 			<input type="button" id="buyDealership" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
-			<span STYLE="color: red; font-size: 26pt" id="DealershipStatus2"></span>
+			<span id="DealershipStatus2"></span>
 			<h1 title="Might as well use all this rock from the mining."> Road (Increases Dealership Prices):</h1>
-			<h2> <span id="Road"></span> Roads | Cost: 1 Empty Lot </h2>
+			<p><span id="Road"></span> Roads | Cost: 1 Empty Lot </p>
 			<input type="button" id="buyRoad" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1 title="Should we spend our land on Roads or Solar Plants? Why not both?"> Solar Road (Increases Dealership Prices | Produces 10 MWh/Second):</h1>
-			<h2> <span id="SolarRoad"></span> Solar Roads | Cost: 1 Empty Lot + <span id="SolarRoadCost"></span> Solar Arrays</h2>
+			<p><span id="SolarRoad"></span> Solar Roads | Cost: 1 Empty Lot + <span id="SolarRoadCost"></span> Solar Arrays</p>
 			<input type="button" id="buySolarRoad" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
@@ -567,24 +615,24 @@
 	
 		<div id="PlanesTab" class="tabcontent">
 		
-			<h1 title="Comes with a free TSA team!"> Airport (Provides space for 30 planes | Each Plane makes $<span STYLE="font-size: 18px" id="AirportMoney"></span> | 10 MWh/Second):</h1>
-			<h2> <span id="AirportStatus"></span> </h2>
+			<h1 title="Comes with a free TSA team!"> Airport (Provides space for 30 planes | Each Plane makes $<span id="AirportMoney"></span> | 10 MWh/Second):</h1>
+			<p><span id="AirportStatus"></span> </p>
 			<input type="button" id="buyAirport" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
-			<span STYLE="color: red; font-size: 26pt" id="AirportStatus2"></span>
+			<span id="AirportStatus2"></span>
 			<h1 title="Its like a big metal birdhouse for a big metal bird."> Hanger (Houses 5 Planes):</h1>
-			<h2> <span id="Hanger"></span> Hangers | Cost: 2 Empty Lots + $<span id="HangerCost"></span>K</h2>
+			<p><span id="Hanger"></span> Hangers | Cost: 2 Empty Lots + $<span id="HangerCost"></span>K</p>
 			<input type="button" id="buyHanger" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1 title="Faster loading, more money! Plus we can just store a plane at the terminal."> Terminal (Increases Base Plane Ticket | Houses 1 Plane):</h1>
-			<h2> <span id="Terminal"></span> Terminals | Cost: $<span id="TerminalCost"></span>K</h2>
+			<p><span id="Terminal"></span> Terminals | Cost: $<span id="TerminalCost"></span>K</p>
 			<input type="button" id="buyTerminal" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1 title="Is the exit through a gift shop? The exit is ALWAYS through a gift shop."> Gift Shop (Increases Sales from Passengers):</h1>
-			<h2> <span id="GiftShop"></span> Gift Shops | Cost: $<span id="GiftShopCost"></span>K</h2>
+			<p><span id="GiftShop"></span> Gift Shops | Cost: $<span id="GiftShopCost"></span>K</p>
 			<input type="button" id="buyGiftShop" value="Build 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
@@ -595,8 +643,8 @@
 		<div id="LicenseTab" class="tabcontent">
 			<br />
 			<h1>Licenses:</h1>
-			<h2>Money for New License: $<span id="GenCost"></span>K</h2>
-			<h2>Licenses:	<span id="GenPoints"></span></h2>
+			<p>Money for New License: $<span id="GenCost"></span>K</p>
+			<p>Licenses:	<span id="GenPoints"></span></p>
 			<input type="button" id="UnlockCoal" value="Unlock Coal" /><span id="GenCoalStatus"></span>
 			<br /><input type="button" id="UnlockCopper" value="Unlock Copper" /><span id="GenCopperStatus"></span>
 			<br /><input type="button" id="UnlockOil" value="Unlock Oil" /><span id="GenOilStatus"></span>
@@ -605,39 +653,39 @@
 			<!-- <br /><input type="button" id="UnlockBuilding" value="Unlock Building" /><span id="GenBuildingStatus"></span> -->
 			<br /><br /><br />
 			
-			<h2>Retirement (1 Gold Coin per $1,000,000):</h2>
-			<h2>Gold Coins Earned by Retiring:	<span id="GoldCoinGain"></span></h2>
-			<br /><input type="button" id="Retire" value="Retire" /> <FONT STYLE="color: red; font-size: 14pt">Warning! Unable to return to before retiring!</FONT>
+			<p>Retirement (1 Gold Coin per $1,000,000):</p>
+			<p>Gold Coins Earned by Retiring:	<span id="GoldCoinGain"></span></p>
+			<br /><input type="button" id="Retire" value="Retire" />Warning! Unable to return to before retiring!
 		</div>
 	
 		<div id="GildedTab" class="tabcontent">
-			<FONT COLOR="#DFBC00">
+			
 			<h1> Gilded Iron Mines (10 Iron/Second | Persists through retirement):</h1>
-			<h2> <span id="GildedIronMine"></span> Gilded Iron Mines | Cost: <span id="GildedIronMineCost"></span> Gold Coins </h2>
+			<p><span id="GildedIronMine"></span> Gilded Iron Mines | Cost: <span id="GildedIronMineCost"></span> Gold Coins </p>
 			<input type="button" id="buyGildedIronMine" value="Buy 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1> Gilded Coal Mines (6 Coal/Second | Persists through retirement | Requires License to Produce):</h1>
-			<h2> <span id="GildedCoalMine"></span> Gilded Coal Mines | Cost: <span id="GildedCoalMineCost"></span> Gold Coins </h2>
+			<p><span id="GildedCoalMine"></span> Gilded Coal Mines | Cost: <span id="GildedCoalMineCost"></span> Gold Coins </p>
 			<input type="button" id="buyGildedCoalMine" value="Buy 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1> Gilded Copper Mines (10 Copper/Second | Persists through retirement | Requires License to Produce):</h1>
-			<h2> <span id="GildedCopperMine"></span> Gilded Copper Mines | Cost: <span id="GildedCopperMineCost"></span> Gold Coins </h2>
+			<p><span id="GildedCopperMine"></span> Gilded Copper Mines | Cost: <span id="GildedCopperMineCost"></span> Gold Coins </p>
 			<input type="button" id="buyGildedCopperMine" value="Buy 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1> Gilded Oil Well (20 Oil/Second | Persists through retirement | Requires License to Produce):</h1>
-			<h2> <span id="GildedOilWell"></span> Gilded Oil Wells | Cost: <span id="GildedOilWellCost"></span> Gold Coins </h2>
+			<p><span id="GildedOilWell"></span> Gilded Oil Wells | Cost: <span id="GildedOilWellCost"></span> Gold Coins </p>
 			<input type="button" id="buyGildedOilWell" value="Buy 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
 			<h1> Gilded License (Licenses persist through retirement):</h1>
-			<h2> <span id="GildedLicenseStatus"></span> </h2>
+			<p><span id="GildedLicenseStatus"></span> </p>
 			<input type="button" id="buyGildedLicense" value="Buy 1" />
 			<br />================================================================================================================================================================================================================<br />
 			
-			</FONT>
+			
 		</div>
 		<div id="OptionsTab" class="tabcontent">
 			
@@ -651,7 +699,7 @@
 		
 		
 		<div id="HelpTab" class="tabcontent">
-			<h2> Vertical Monopoly: </h2>
+			<p> Vertical Monopoly: </p>
 			Vertical Monopoly is a incremental game about buying up mines, refineries, and factories to monopolize on the industry.  To make money, you need to produce enough resources to sample to your client to start a contract.<br />
 			<br />
 			In VM, there have two kinds of buildings:<br />
@@ -659,9 +707,9 @@
 			Built Buildings: These give passive bonuses and require empty lots to be built on<br /><br />
 			
 			Some bought buildings require a source of raw goods.  If your production can't fully produce the needed raw resources, you will have to start an anti-contract to purchase these goods at wholesale price.<br /><br />
-			Its important to manage your contracts, power usage, anti-contracts, and money to make sure you are in constant profit.  If you run bankrupt, you lose everything and have to restart.<br /><br />
+			Its important to manage your contracts, power usage, AC, and money to make sure you are in constant profit.  If you run bankrupt, you lose everything and have to restart.<br /><br />
 			
-			<h2> How to get started: </h2>
+			<p> How to get started: </p>
 			To get started:<br />
 			1. Spend your savings on an Iron Mine<br />
 			2. Produce enough Iron to maintain an Iron Contract<br />

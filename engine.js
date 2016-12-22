@@ -2573,145 +2573,11 @@ var Engine = {
 	
 	},
 	
-	UnlockCoal: function() {
-		if (Engine.Player.Money > Engine.Player.GenCost) {
-	
-			if (Engine.Player.GenCoal < 1) {
-				Engine.Player.GenCoal++;
-				Engine.Player.Generations++;
-				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
-			
-				Engine.Status("Coal License Purchased!");
-	
-			} else {
-				Engine.Status("Coal License already bought!");
-			}
-		
-			
-		} else {
-		
-			Engine.Status("Not enough money for license!");
-			
-		}
-		
-	},
-	
-	UnlockCopper: function() {
-		if (Engine.Player.Money > Engine.Player.GenCost) {
-	
-			if (Engine.Player.GenCopper < 1) {
-				Engine.Player.GenCopper++;
-				Engine.Player.Generations++;
-				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
-			
-				Engine.Status("Copper License Purchased!");
-	
-			} else {
-				Engine.Status("Copper License already bought!");
-			}
-		
-			
-		} else {
-		
-			Engine.Status("Not enough money for license!");
-			
-		}
-		
-	},
-	
-	UnlockOil: function() {
-		if (Engine.Player.Money > Engine.Player.GenCost) {
-	
-			if (Engine.Player.GenOil < 1) {
-				Engine.Player.GenOil++;
-				Engine.Player.Generations++;
-				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
-			
-				Engine.Status("Oil License Purchased!");
-	
-			} else {
-				Engine.Status("Oil License already bought!");
-			}
-		
-			
-		} else {
-		
-			Engine.Status("Not enough money for license!");
-			
-		}
-		
-	},
-	
-	UnlockGlass: function() {
-		if (Engine.Player.Money > Engine.Player.GenCost) {
-	
-			if (Engine.Player.GenGlass < 1) {
-				Engine.Player.GenGlass++;
-				Engine.Player.Generations++;
-				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
-			
-				Engine.Status("Glass License Purchased!");
-	
-			} else {
-				Engine.Status("Glass License already bought!");
-			}
-		
-			
-		} else {
-		
-			Engine.Status("Not enough money for license!");
-			
-		}
-		
-	},
-	
-	UnlockPower: function() {
-		if (Engine.Player.Money > Engine.Player.GenCost) {
-	
-			if (Engine.Player.GenPower < 1) {
-				Engine.Player.GenPower++;
-				Engine.Player.Generations++;
-				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
-			
-				Engine.Status("Power License Purchased!");
-	
-			} else {
-				Engine.Status("Power License already bought!");
-			}
-		
-			
-		} else {
-		
-			Engine.Status("Not enough money for license!");
-			
-		}
-		
-	},
-	
-	UnlockBuilding: function() {
-		if (Engine.Player.Money > Engine.Player.GenCost) {
-	
-			if (Engine.Player.GenBuilding < 1) {
-				Engine.Player.GenBuilding++;
-				Engine.Player.Generations++;
-				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
-			
-				Engine.Status("Building License Purchased!");
-	
-			} else {
-				Engine.Status("Building License already bought!");
-			}
-		
-			
-		} else {
-		
-			Engine.Status("Not enough money for license!");
-			
-		}
-		
-	},
-	
-	
+	UnlockCoal: UnlockX("Coal"),
+	UnlockCopper: UnlockX("Copper"),
+	UnlockOil: UnlockX("Oil"),
+	UnlockGlass: UnlockX("Glass"),
+	UnlockPower: UnlockX("Power"),
 	
 	ResetValues: function() {
 		Engine.Player.Money = 150;
@@ -5325,13 +5191,6 @@ var Engine = {
 			return false;
 		});
 		
-		//Engine.Clickables.UnlockBuilding = document.getElementById("UnlockBuilding");
-		//Engine.Clickables.UnlockBuilding.addEventListener("click", function() {
-		//	Engine.UnlockBuilding();
-		//	return false;
-		//});
-		
-		
 		Engine.Display.Money = document.getElementById("Money");
 		Engine.Display.MoneyPS = document.getElementById("MoneyPS");
 		
@@ -5850,25 +5709,43 @@ var Engine = {
 	
 };
 
+function UnlockX(X) {
+	return function() {
+		if (Engine.Player.Money > Engine.Player.GenCost) {
+			if (Engine.Player["Gen" + X] < 1) {
+				Engine.Player["Gen" + X]++;
+				Engine.Player.Generations++;
+				Engine.Player.Money -= Engine.Player.GenCost;
+				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations);
+				Engine.Status(X + " License Purchased!");
+			} else {
+				Engine.Status(X + " License already bought!");
+			}
+		} else {
+			Engine.Status("Not enough money for a new license!");
+		}
+	};
+};
+
 function openCity(evt, cityName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
+	// Declare all variables
+	var i, tabcontent, tablinks;
 
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
+	// Get all elements with class="tabcontent" and hide them
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
 
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
+	// Get all elements with class="tablinks" and remove the class "active"
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
 
-    // Show the current tab, and add an "active" class to the link that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+	// Show the current tab, and add an "active" class to the link that opened the tab
+	document.getElementById(cityName).style.display = "block";
+	evt.currentTarget.className += " active";
 }
 
 window.onload = function() {

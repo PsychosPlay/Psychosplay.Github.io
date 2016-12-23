@@ -106,6 +106,43 @@ ul.tab li a:focus, .active {background-color: #ccc;}
     border: 1px solid #ccc;
     border-top: none;
 }
+/* Style the list */
+ul.tab2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #FFD700;
+}
+
+/* Float the list items side by side */
+ul.tab2 li {float: left;}
+
+/* Style the links inside the list items */
+ul.tab2 li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab2 li a:hover {background-color: #ddd;}
+
+/* Create an active/current tablink class */
+ul.tab2 li a:focus, .active {background-color: #ccc;}
+
+/* Style the tab content */
+.tabcontent2 {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
 
 /* The Modal (background) */
 .modal {
@@ -130,10 +167,25 @@ ul.tab li a:focus, .active {background-color: #ccc;}
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
-.HolyGrail {
+.HolyGrailWhite {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: White;
+}
+
+.HolyGrailGray {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #bcbcbc;
+}
+
+.HolyGrailBlack {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: Black;
 }
 
 .HolyGrail-body {
@@ -148,6 +200,18 @@ ul.tab li a:focus, .active {background-color: #ccc;}
 .HolyGrail-nav, .HolyGrail-ads {
   /* 12em is the width of the columns */
   flex: 0 0 28em;
+  line-height: 18px
 }
 
+mark {
+    background-color:transparent;
+}
+.MarkInvisible {
+}
+.MarkVisible {
+    background-color: #ffbaba;
+}
 
+button.link { 
+	background:none;border:none; 
+}

@@ -1,5 +1,5 @@
 /**********************************************************************
-Version 15: Iron Selling/Breaking/AntiContract
+Version 16: Iron Selling/Breaking/AntiContract
 			Coal Selling/Breaking/AntiContract
 			Refined Selling/AntiContract
 			Steel Selling/AntiContract
@@ -29,6 +29,7 @@ Version 15: Iron Selling/Breaking/AntiContract
 				Powerlines
 			
 			Gilding
+				Refineries
 			
 			AutoSaving
 Author: Psychos Play
@@ -48,8 +49,8 @@ var Engine = {
 		CoalPS: 0,
 		SteelPS: 0,
 		MechPartPS: 0,
-		ConsPartPS: 0,
 		ACPS: 0,
+		ConsPartPS: 0,
 		
 		CopperPS: 0,
 		RefCopperPS: 0,
@@ -495,14 +496,6 @@ var Engine = {
 		MechPartFactCost: 25000,
 		MechPartContractCost: 900,
 		
-		//Construction Part
-		ConsPart: 0,
-		ConsPartFact: 0,
-		ConsPartContract: 0,
-		ConsPartAntiContract: 0,
-		
-		ConsPartFactCost: 30000,
-		
 		//AC Unit
 		AC: 0,
 		ACFact: 0,
@@ -513,6 +506,15 @@ var Engine = {
 		
 		ACFactCost: 100000,
 		ACContractCost: 50,
+		
+		
+		//Construction Part
+		ConsPart: 0,
+		ConsPartFact: 0,
+		ConsPartContract: 0,
+		ConsPartAntiContract: 0,
+		
+		ConsPartFactCost: 1000000,
 		
 		
 		//Copper
@@ -658,7 +660,7 @@ var Engine = {
 		SolarPlantCost: 3,
 		
 		NuclearPlant: 0,
-		NuclearPlantCost: 250000,
+		NuclearPlantCost: 750000,
 		UraniumCost: 100,
 		
 		
@@ -710,6 +712,34 @@ var Engine = {
 		ThirtySecondCounter: 0,
 		
 		
+		
+		// Construction
+		Permit: 0,
+		PermitCost: 10000,
+		Warehouse: 0,
+		Skyscraper: 0,
+		
+		Building: 0,
+		
+		BuildTime: 0,
+		WarehouseBuildTimeBase: 120,
+		WarehouseBuildTime: 120,
+		SkyscraperBuildTimeBase: 1200,
+		SkyscraperBuildTime: 1200,
+		
+		WarehouseConsPartCost: 500,
+		WarehouseSpoolCost: 50,
+		WarehouseGlassCost: 500,
+		WarehouseACCost: 10,
+		WarehouseLightbulbCost: 250,
+		
+		SkyscraperConsPartCost: 5000,
+		SkyscraperSpoolCost: 300,
+		SkyscraperGlassCost: 10000,
+		SkyscraperACCost: 200,
+		SkyscraperLightbulbCost: 4000,
+		
+		
 		Generations: 0,
 		GenPoints: 0,
 		GenCost: 1000,
@@ -724,15 +754,42 @@ var Engine = {
 		//Gold Coin Stuff
 		GildedIronMine: 0,
 		GildedIronMineCost: 4,
+				GildedIRefinery: 0,
+				GildedIRefineryCost: 20,
+		
 		GildedCoalMine: 0,
 		GildedCoalMineCost: 4,
+				GildedSRefinery: 0,
+				GildedSRefineryCost: 20,
+		
 		GildedCopperMine: 0,
 		GildedCopperMineCost: 4,
+				GildedCRefinery: 0,
+				GildedCRefineryCost: 20,
+		
 		GildedOilWell: 0,
 		GildedOilWellCost: 6,
+				GildedGRefinery: 0,
+				GildedGRefineryCost: 15,
+				GildedPRefinery: 0,
+				GildedPRefineryCost: 15,
+		
 		
 		GildedLicense: 0,
 		
+		GildedEngineer: 0,
+		GildedEngineerCost: 10,
+		
+		GildedForeman: 0,
+		GildedForemanCost: 15,
+		
+		//CRIME!!!!
+		Weed: 0,
+		WeedPlant: 0,
+		WeedPlantCost: 100,
+		
+		WeedDealer: 0,
+		WeedDealerCost: 1000,
 		
 		
 		
@@ -1305,23 +1362,6 @@ var Engine = {
 	},
 	
 	
-	BuyAConsPartFact: function() {
-	
-		if (Engine.Player.Money >= Engine.Player.ConsPartFactCost) {
-			Engine.Player.Money -= Engine.Player.ConsPartFactCost;
-			Engine.Player.ConsPartFact++;
-			Engine.Player.ConsPartFactCost = Math.ceil(Engine.Player.ConsPartFactCost*1.2);
-			
-			Engine.Display.Money.innerHTML = Engine.Player.Money;
-			Engine.Display.ConsPartFact.innerHTML = Engine.Player.ConsPartFact;
-			Engine.Status("Construction Part Factory Bought!");
-		} else {
-			Engine.Status("Not enough Money!");
-		}
-		
-	},
-	
-	
 	BuyAACFact: function() {
 	
 	if (Engine.Player.GenCoal > 0) {
@@ -1388,6 +1428,28 @@ var Engine = {
 		} else {
 			Engine.Status("Need to build an automated arm!");
 		}
+		
+	},
+	
+	
+	BuyAConsPartFact: function() {
+	if (Engine.Player.MechPartFactArm >= 1) {
+		if (Engine.Player.Money >= Engine.Player.ConsPartFactCost) {
+			Engine.Player.Money -= Engine.Player.ConsPartFactCost;
+			Engine.Player.ConsPartFact++;
+			Engine.Player.MechPartFactArm--;
+			Engine.Player.ConsPartFactCost = Math.ceil(Engine.Player.ConsPartFactCost*1.2);
+			
+			Engine.Display.Money.innerHTML = Engine.Player.Money;
+			Engine.Display.ConsPartFact.innerHTML = Engine.Player.ConsPartFact;
+			Engine.Display.MechPartFactArm.innerHTML = Engine.Player.MechPartFactArm;
+			Engine.Status("Construction Part Factory Bought!");
+		} else {
+			Engine.Status("Not enough Money!");
+		}
+	} else {
+		Engine.Status("Need to build an Automated Mechanical Part Factory!");
+	}
 		
 	},
 	
@@ -2080,7 +2142,7 @@ var Engine = {
 			Engine.Player.Money -= Engine.Player.PowerLineCost;
 			Engine.Player.PowerLine++;
 			Engine.Player.PowerLineCost = Math.ceil(Engine.Player.PowerLineCost*1.1);
-			Engine.Player.MWhCost = Math.floor(80*(1+(Math.sqrt(Engine.Player.PowerLine)/5)))/10;
+			Engine.Player.MWhCost = Math.floor(80*(1+(Math.sqrt(Engine.Player.PowerLine)/7)))/10;
 			
 			Engine.Display.Money.innerHTML = Engine.Player.Money;
 			Engine.Display.PowerLine.innerHTML = Engine.Player.PowerLine;
@@ -2305,7 +2367,7 @@ var Engine = {
 			Engine.Status("Not enough Money!"); 
 		}
 	} else {
-		Engine.Status("Need to produce more cars!"); 
+		Engine.Status("Need to increase car production!"); 
 	}
 	},
 	
@@ -2466,6 +2528,153 @@ var Engine = {
 	},
 	
 	
+	
+	/*
+	======================
+	Button Construction 
+	======================
+	*/
+	
+	BuyAPermit: function() {
+	
+		if (Engine.Player.Money > Engine.Player.PermitCost) {
+				Engine.Player.Money -= Engine.Player.PermitCost;
+				Engine.Player.Permit++;
+			
+				Engine.Display.Money.innerHTML = Engine.Player.Money;
+				Engine.Display.Permit.innerHTML = Engine.Player.Permit;
+				Engine.Player.PermitCost = Math.round(Engine.Player.PermitCost*1.5);
+				Engine.Status("Construction Permit Bought!");
+		} else {
+			Engine.Status("Not enough Money!"); 
+		}
+	},
+	
+	BuildAWarehouse: function() {
+	
+	if (Engine.Player.BuildTime < 1) {
+	if (Engine.Player.Permit > 0) {
+		if (Engine.Player.ConsPart >= Engine.Player.WarehouseConsPartCost) {
+		if (Engine.Player.Glass >= Engine.Player.WarehouseGlassCost) {
+		if (Engine.Player.AC >= Engine.Player.WarehouseACCost) {
+		if (Engine.Player.Spool >= Engine.Player.WarehouseSpoolCost) {
+		if (Engine.Player.Lightbulb >= Engine.Player.WarehouseLightbulbCost) {
+				Engine.Player.ConsPart -= Engine.Player.WarehouseConsPartCost;
+				Engine.Player.Glass -= Engine.Player.WarehouseGlassCost;
+				Engine.Player.AC -= Engine.Player.WarehouseACCost;
+				Engine.Player.Spool -= Engine.Player.WarehouseSpoolCost;
+				Engine.Player.Lightbulb -= Engine.Player.WarehouseLightbulbCost;
+				Engine.Player.Permit--;
+				
+				
+				Engine.Player.BuildTime += Engine.Player.WarehouseBuildTime;
+				
+				Engine.Player.WarehouseConsPartCost = Math.round(Engine.Player.WarehouseConsPartCost*1.5);
+				Engine.Player.WarehouseGlassCost = Math.round(Engine.Player.WarehouseGlassCost*1.5);
+				Engine.Player.WarehouseACCost = Math.round(Engine.Player.WarehouseACCost*1.5);
+				Engine.Player.WarehouseSpoolCost = Math.round(Engine.Player.WarehouseSpoolCost*1.5);
+				Engine.Player.WarehouseLightbulbCost = Math.round(Engine.Player.WarehouseLightbulbCost*1.5);
+				Engine.Player.Building = 1;
+				
+				Engine.Player.WarehouseBuildTimeBase = Math.round(Engine.Player.WarehouseBuildTimeBase*1.2);
+			
+				Engine.Display.Money.innerHTML = Engine.Player.Money;
+				
+				Engine.Display.WarehouseConsPartCost.innerHTML = Engine.Player.WarehouseConsPartCost;
+				Engine.Display.WarehouseGlassCost.innerHTML = Engine.Player.WarehouseGlassCost;
+				Engine.Display.WarehouseACCost.innerHTML = Engine.Player.WarehouseACCost;
+				Engine.Display.WarehouseSpoolCost.innerHTML = Engine.Player.WarehouseSpoolCost;
+				Engine.Display.WarehouseLightbulbCost.innerHTML = Engine.Player.WarehouseLightbulbCost;
+				
+				Engine.Display.WarehouseBuildTime.innerHTML = Engine.Player.WarehouseBuildTime;
+				Engine.Display.BuildTime.innerHTML = Engine.Player.BuildTime;
+				Engine.Status("Construction Started!");
+		} else {
+			Engine.Status("Not enough Lightbulbs!"); 
+		}
+		} else {
+			Engine.Status("Not enough Spool!"); 
+		}
+		} else {
+			Engine.Status("Not enough A/C Units!"); 
+		}
+		} else {
+			Engine.Status("Not enough Glass!"); 
+		}
+		} else {
+			Engine.Status("Not enough Construction Parts!"); 
+		}
+	} else {
+		Engine.Status("You need to buy a permit."); 
+	}
+	} else {
+		Engine.Status("You are already building a project."); 
+	}
+	},
+	
+	BuildASkyscraper: function() {
+	
+	if (Engine.Player.BuildTime < 1) {
+	if (Engine.Player.Permit > 0) {
+		if (Engine.Player.ConsPart >= Engine.Player.SkyscraperConsPartCost) {
+		if (Engine.Player.Glass >= Engine.Player.SkyscraperGlassCost) {
+		if (Engine.Player.AC >= Engine.Player.SkyscraperACCost) {
+		if (Engine.Player.Spool >= Engine.Player.SkyscraperSpoolCost) {
+		if (Engine.Player.Lightbulb >= Engine.Player.SkyscraperLightbulbCost) {
+				Engine.Player.ConsPart -= Engine.Player.SkyscraperConsPartCost;
+				Engine.Player.Glass -= Engine.Player.SkyscraperGlassCost;
+				Engine.Player.AC -= Engine.Player.SkyscraperACCost;
+				Engine.Player.Spool -= Engine.Player.SkyscraperSpoolCost;
+				Engine.Player.Lightbulb -= Engine.Player.SkyscraperLightbulbCost;
+				Engine.Player.Permit--;
+				
+				
+				Engine.Player.BuildTime += Engine.Player.SkyscraperBuildTime;
+				
+				Engine.Player.SkyscraperConsPartCost = Math.round(Engine.Player.SkyscraperConsPartCost*1.5);
+				Engine.Player.SkyscraperGlassCost = Math.round(Engine.Player.SkyscraperGlassCost*1.5);
+				Engine.Player.SkyscraperACCost = Math.round(Engine.Player.SkyscraperACCost*1.5);
+				Engine.Player.SkyscraperSpoolCost = Math.round(Engine.Player.SkyscraperSpoolCost*1.5);
+				Engine.Player.SkyscraperLightbulbCost = Math.round(Engine.Player.SkyscraperLightbulbCost*1.5);
+				Engine.Player.Building = 1;
+				
+				Engine.Player.SkyscraperBuildTimeBase = Math.round(Engine.Player.SkyscraperBuildTimeBase*1.2);
+			
+				Engine.Display.Money.innerHTML = Engine.Player.Money;
+				
+				Engine.Display.SkyscraperConsPartCost.innerHTML = Engine.Player.SkyscraperConsPartCost;
+				Engine.Display.SkyscraperGlassCost.innerHTML = Engine.Player.SkyscraperGlassCost;
+				Engine.Display.SkyscraperACCost.innerHTML = Engine.Player.SkyscraperACCost;
+				Engine.Display.SkyscraperSpoolCost.innerHTML = Engine.Player.SkyscraperSpoolCost;
+				Engine.Display.SkyscraperLightbulbCost.innerHTML = Engine.Player.SkyscraperLightbulbCost;
+				
+				Engine.Display.SkyscraperBuildTime.innerHTML = Engine.Player.SkyscraperBuildTime;
+				Engine.Display.BuildTime.innerHTML = Engine.Player.BuildTime;
+				Engine.Status("Construction Started!");
+		} else {
+			Engine.Status("Not enough Lightbulbs!"); 
+		}
+		} else {
+			Engine.Status("Not enough Spool!"); 
+		}
+		} else {
+			Engine.Status("Not enough A/C Units!"); 
+		}
+		} else {
+			Engine.Status("Not enough Glass!"); 
+		}
+		} else {
+			Engine.Status("Not enough Construction Parts!"); 
+		}
+	} else {
+		Engine.Status("You need to buy a permit."); 
+	}
+	} else {
+		Engine.Status("You are already building a project."); 
+	}
+	},
+	
+	
 	/*
 	======================
 	Gilded
@@ -2488,6 +2697,25 @@ var Engine = {
 		
 	},
 	
+	
+			BuyAGildedIRefinery: function() {
+			if (Engine.Player.SRefinery + Math.floor(Engine.Player.GildedIronMine/2) >= (1 + Engine.Player.GildedIRefinery)) {
+				if (Engine.Player.GoldCoin >= Engine.Player.GildedIRefineryCost) {
+					Engine.Player.GoldCoin -= Engine.Player.GildedIRefineryCost;
+					Engine.Player.GildedIRefinery++;
+					Engine.Player.GildedIRefineryCost = Math.ceil(Engine.Player.GildedIRefineryCost*1.5);
+			
+					Engine.Display.GoldCoin.innerHTML = Engine.Player.GoldCoin;
+					Engine.Display.GildedIRefinery.innerHTML = Engine.Player.GildedIRefinery;
+					Engine.Status("Gilded Iron Refinery Bought!");
+				} else {
+					Engine.Status("Not enough Gold Coins!");
+				}
+			} else {
+				Engine.Status("Not enough Gilded Iron Mines!");
+			}
+			},
+	
 	BuyAGildedCoalMine: function() {
 	
 		if (Engine.Player.GoldCoin >= Engine.Player.GildedCoalMineCost) {
@@ -2503,6 +2731,29 @@ var Engine = {
 		}
 		
 	},
+	
+	
+			BuyAGildedSRefinery: function() {
+			if (Math.floor(6*(Engine.Player.GildedCoalMine/9)) >= (1 + Engine.Player.GildedSRefinery)) {
+			if (Engine.Player.SRefinery + Math.floor(Engine.Player.GildedIronMine/2) >= (1 + Engine.Player.GildedIRefinery)) {
+				if (Engine.Player.GoldCoin >= Engine.Player.GildedSRefineryCost) {
+					Engine.Player.GoldCoin -= Engine.Player.GildedSRefineryCost;
+					Engine.Player.GildedSRefinery++;
+					Engine.Player.GildedSRefineryCost = Math.ceil(Engine.Player.GildedSRefineryCost*1.5);
+			
+					Engine.Display.GoldCoin.innerHTML = Engine.Player.GoldCoin;
+					Engine.Display.GildedSRefinery.innerHTML = Engine.Player.GildedSRefinery;
+					Engine.Status("Gilded Steel Refinery Bought!");
+				} else {
+					Engine.Status("Not enough Gold Coins!");
+				}
+			} else {
+				Engine.Status("Not enough Gilded Iron Mines!");
+			}
+			} else {
+				Engine.Status("Not enough Gilded Coal Mines!");
+			}
+			},
 	
 	BuyAGildedCopperMine: function() {
 	
@@ -2520,6 +2771,25 @@ var Engine = {
 		
 	},
 	
+	
+			BuyAGildedCRefinery: function() {
+			if (Math.floor(10*(Engine.Player.GildedCopperMine/15)) >= (1 + Engine.Player.GildedCRefinery)) {
+				if (Engine.Player.GoldCoin >= Engine.Player.GildedCRefineryCost) {
+					Engine.Player.GoldCoin -= Engine.Player.GildedCRefineryCost;
+					Engine.Player.GildedCRefinery++;
+					Engine.Player.GildedCRefineryCost = Math.ceil(Engine.Player.GildedCRefineryCost*1.5);
+			
+					Engine.Display.GoldCoin.innerHTML = Engine.Player.GoldCoin;
+					Engine.Display.GildedCRefinery.innerHTML = Engine.Player.GildedCRefinery;
+					Engine.Status("Gilded Copper Refinery Bought!");
+				} else {
+					Engine.Status("Not enough Gold Coins!");
+				}
+			} else {
+				Engine.Status("Not enough Gilded Copper Mines!");
+			}
+			},
+	
 	BuyAGildedOilWell: function() {
 	
 		if (Engine.Player.GoldCoin >= Engine.Player.GildedOilWellCost) {
@@ -2536,6 +2806,44 @@ var Engine = {
 		
 	},
 	
+	
+			BuyAGildedGRefinery: function() {
+			if (Math.floor((20*Engine.Player.GildedOilWell - (Engine.Player.GildedGRefinery*8 + Engine.Player.GildedPRefinery*12))/8) >= 1) {
+				if (Engine.Player.GoldCoin >= Engine.Player.GildedGRefineryCost) {
+					Engine.Player.GoldCoin -= Engine.Player.GildedGRefineryCost;
+					Engine.Player.GildedGRefinery++;
+					Engine.Player.GildedGRefineryCost = Math.ceil(Engine.Player.GildedGRefineryCost*1.5);
+			
+					Engine.Display.GoldCoin.innerHTML = Engine.Player.GoldCoin;
+					Engine.Display.GildedGRefinery.innerHTML = Engine.Player.GildedGRefinery;
+					Engine.Status("Gilded Gas Refinery Bought!");
+				} else {
+					Engine.Status("Not enough Gold Coins!");
+				}
+			} else {
+				Engine.Status("Not enough Gilded Oil Wells!");
+			}
+			},
+	
+	
+			BuyAGildedPRefinery: function() {
+			if (Math.floor((20*Engine.Player.GildedOilWell - (Engine.Player.GildedGRefinery*8 + Engine.Player.GildedPRefinery*12))/12) >= 1) {
+				if (Engine.Player.GoldCoin >= Engine.Player.GildedPRefineryCost) {
+					Engine.Player.GoldCoin -= Engine.Player.GildedPRefineryCost;
+					Engine.Player.GildedPRefinery++;
+					Engine.Player.GildedPRefineryCost = Math.ceil(Engine.Player.GildedPRefineryCost*1.5);
+			
+					Engine.Display.GoldCoin.innerHTML = Engine.Player.GoldCoin;
+					Engine.Display.GildedPRefinery.innerHTML = Engine.Player.GildedPRefinery;
+					Engine.Status("Gilded Plastic Refinery Bought!");
+				} else {
+					Engine.Status("Not enough Gold Coins!");
+				}
+			} else {
+				Engine.Status("Not enough Gilded Oil Wells!");
+			}
+			},
+	
 	BuyAGildedLicense: function() {
 	if (Engine.Player.GildedLicense < 1) {
 		if (Engine.Player.GoldCoin >= 20) {
@@ -2551,6 +2859,90 @@ var Engine = {
 	}
 	},
 	
+	BuyAGildedEngineer: function() {
+	if (Engine.Player.GildedEngineer < 29) {
+	if (Engine.Player.GoldCoin >= Engine.Player.GildedEngineerCost) {
+		Engine.Player.GoldCoin -= Engine.Player.GildedEngineerCost;
+		Engine.Player.GildedEngineer++;
+		Engine.Player.GildedEngineerCost = Math.ceil(Engine.Player.GildedEngineerCost*1.7);
+			
+		Engine.Display.GoldCoin.innerHTML = Engine.Player.GoldCoin;
+		Engine.Display.GildedEngineer.innerHTML = Engine.Player.GildedEngineer;
+		Engine.Status("Gilded Engineer Hired!");
+	} else {
+		Engine.Status("Not enough Gold Coins!");
+	}
+	} else {
+		Engine.Status("You hired the max amount of Engineers!");
+	}
+	},
+	
+	BuyAGildedForeman: function() {
+	if (Engine.Player.GoldCoin >= Engine.Player.GildedForemanCost) {
+		Engine.Player.GoldCoin -= Engine.Player.GildedForemanCost;
+		Engine.Player.GildedForeman++;
+		Engine.Player.GildedForemanCost = Math.ceil(Engine.Player.GildedForemanCost*1.7);
+			
+		Engine.Display.GoldCoin.innerHTML = Engine.Player.GoldCoin;
+		Engine.Display.GildedForeman.innerHTML = Engine.Player.GildedForeman;
+		Engine.Status("Gilded Foreman Hired!");
+	} else {
+		Engine.Status("Not enough Gold Coins!");
+	}
+	},
+	
+	
+	/*
+	======================
+	Button Crime
+	======================
+	*/
+	
+	
+	BuyAWeedplant: function() {
+	
+		if (Engine.Player.Money >= Engine.Player.WeedPlantCost) {
+			Engine.Player.Money -= Engine.Player.WeedPlantCost;
+			Engine.Player.WeedPlant++;
+			Engine.Player.WeedPlantCost = Math.ceil(Engine.Player.WeedPlantCost*1.2);
+			
+			Engine.Display.Money.innerHTML = Engine.Player.Money;
+			Engine.Display.WeedPlant.innerHTML = Engine.Player.WeedPlant;
+			Engine.Status("''Fern'' Bought!");
+		} else {
+			Engine.Status("Not enough Money!");
+		}
+	},
+	
+	SellWeed: function() {
+	
+		if (Engine.Player.Weed > 0) {
+			Engine.Player.Weed--;
+			Engine.Player.Money += 10;
+			
+			Engine.Display.Money.innerHTML = Engine.Player.Money;
+			Engine.Display.Weed.innerHTML = Engine.Player.Weed;
+			Engine.Status("Weed Sold...");
+		} else {
+			Engine.Status("Not enough Weed!");
+		}
+	},
+	
+	BuyAWeedDealer: function() {
+	
+		if (Engine.Player.Money >= Engine.Player.WeedDealerCost) {
+			Engine.Player.Money -= Engine.Player.WeedDealerCost;
+			Engine.Player.WeedDealer++;
+			Engine.Player.WeedDealerCost = Math.ceil(Engine.Player.WeedDealerCost*1.2);
+			
+			Engine.Display.Money.innerHTML = Engine.Player.Money;
+			Engine.Display.WeedDealer.innerHTML = Engine.Player.WeedDealer;
+			Engine.Status("Weed Dealer Hired!");
+		} else {
+			Engine.Status("Not enough Money!");
+		}
+	},
+	
 	
 	/*
 	======================
@@ -2562,6 +2954,7 @@ var Engine = {
 		if (Engine.Player.Money > 1000000) {
 			Engine.Player.GoldCoin += Engine.Values.GoldCoinGain;
 			Engine.ResetValues();
+			Engine.Display.GoldCoin.innerHTML = Engine.Player.GoldCoin;
 			
 			Engine.Save();
 			
@@ -2579,8 +2972,10 @@ var Engine = {
 			if (Engine.Player.GenCoal < 1) {
 				Engine.Player.GenCoal++;
 				Engine.Player.Generations++;
+				Engine.Player.Money -= Engine.Player.GenCost;
 				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
 			
+				Engine.Display.Money.innerHTML = Engine.Player.Money;
 				Engine.Status("Coal License Purchased!");
 	
 			} else {
@@ -2602,8 +2997,10 @@ var Engine = {
 			if (Engine.Player.GenCopper < 1) {
 				Engine.Player.GenCopper++;
 				Engine.Player.Generations++;
+				Engine.Player.Money -= Engine.Player.GenCost;
 				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
 			
+				Engine.Display.Money.innerHTML = Engine.Player.Money;
 				Engine.Status("Copper License Purchased!");
 	
 			} else {
@@ -2625,8 +3022,10 @@ var Engine = {
 			if (Engine.Player.GenOil < 1) {
 				Engine.Player.GenOil++;
 				Engine.Player.Generations++;
+				Engine.Player.Money -= Engine.Player.GenCost;
 				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
 			
+				Engine.Display.Money.innerHTML = Engine.Player.Money;
 				Engine.Status("Oil License Purchased!");
 	
 			} else {
@@ -2648,8 +3047,10 @@ var Engine = {
 			if (Engine.Player.GenGlass < 1) {
 				Engine.Player.GenGlass++;
 				Engine.Player.Generations++;
+				Engine.Player.Money -= Engine.Player.GenCost;
 				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
 			
+				Engine.Display.Money.innerHTML = Engine.Player.Money;
 				Engine.Status("Glass License Purchased!");
 	
 			} else {
@@ -2671,8 +3072,10 @@ var Engine = {
 			if (Engine.Player.GenPower < 1) {
 				Engine.Player.GenPower++;
 				Engine.Player.Generations++;
+				Engine.Player.Money -= Engine.Player.GenCost;
 				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
 			
+				Engine.Display.Money.innerHTML = Engine.Player.Money;
 				Engine.Status("Power License Purchased!");
 	
 			} else {
@@ -2694,8 +3097,10 @@ var Engine = {
 			if (Engine.Player.GenBuilding < 1) {
 				Engine.Player.GenBuilding++;
 				Engine.Player.Generations++;
+				Engine.Player.Money -= Engine.Player.GenCost;
 				Engine.Player.GenCost = 1000*Math.pow(5, Engine.Player.Generations)
 			
+				Engine.Display.Money.innerHTML = Engine.Player.Money;
 				Engine.Status("Building License Purchased!");
 	
 			} else {
@@ -3012,6 +3417,25 @@ var Engine = {
 		Engine.Player.GiftShop = 0;
 		Engine.Player.GiftShopCost = 115000;
 		
+		// Construction
+		Permit: 0;
+		Warehouse: 500;
+		Skyscraper: 500;
+		
+		BuildTime: 0;
+		
+		WarehouseConsPartCost: 500;
+		WarehouseSpoolCost: 50;
+		WarehouseGlassCost: 500;
+		WarehouseACCost: 10;
+		WarehouseLightbulbCost: 250;
+		
+		SkyscraperConsPartCost: 5000;
+		SkyscraperSpoolCost: 300;
+		SkyscraperGlassCost: 10000;
+		SkyscraperACCost: 200;
+		SkyscraperLightbulbCost: 4000;
+		
 		
 		Engine.Player.ThirtySecondCounter = 0;
 		
@@ -3025,16 +3449,7 @@ var Engine = {
 			Engine.Player.GenGlass = 0;
 			Engine.Player.GenPower = 0;
 			Engine.Player.GenBuilding = 1;
-		} else {
-			Engine.Player.GenCost = 1000;
-			Engine.Player.GenCoal = 1;
-			Engine.Player.GenCopper = 1;
-			Engine.Player.GenOil = 1;
-			Engine.Player.GenGlass = 1;
-			Engine.Player.GenPower = 1;
-			Engine.Player.GenBuilding = 1;
 		} 
-		
 	},
 	
 	// We need a new function for save
@@ -3104,10 +3519,17 @@ var Engine = {
 			}
 				
 			if (Engine.Player.Money < 0) {
-				window.localStorage.removeItem("savefile");
-				var modal = document.getElementById('myModal');
-				modal.style.display = "block";
-				Engine.AutoSave = 0
+				if (Engine.Player.GoldCoin > 0) {
+					Engine.Player.GoldCoin--;
+					Engine.Player.Money += 500000;
+					Engine.Status("Sold a gold coin to stay in business!");
+					Engine.Display.Money.innerHTML = Engine.Player.Money;
+				} else {
+					window.localStorage.removeItem("savefile");
+					var modal = document.getElementById('myModal');
+					modal.style.display = "block";
+					Engine.AutoSave = 0
+				}
 			}
 			
 			if (Engine.Player.GenCoal > 0) {
@@ -3221,12 +3643,19 @@ var Engine = {
 			Engine.Player.Iron -= Engine.Player.IronContract*10;
 			Engine.Player.Iron -= Engine.Player.IRefinery*20;
 			Engine.Player.Iron -= Engine.Player.CombIRefinery*40;
+			Engine.Player.Iron -= Engine.Player.GildedIRefinery*20;
 			
 			Engine.Player.Iron -= Engine.Player.SRefinery*10;
 			Engine.Player.Iron -= Engine.Player.CombSRefinery*30;
+			if (Engine.Player.GenCoal > 0) {
+				Engine.Player.Iron -= Engine.Player.GildedSRefinery*10;
+			}
 			
-			Engine.Values.IronPS = Engine.Player.IronMine*5 + Engine.Player.IronDrill*20 + Engine.Player.GildedIronMine*10 - Engine.Player.IronContract*10 - Engine.Player.IRefinery*20 - Engine.Player.SRefinery*10 - Engine.Player.CombIRefinery*40 - Engine.Player.CombSRefinery*30;
-			
+			if (Engine.Player.GenCoal > 0) {
+				Engine.Values.IronPS = Engine.Player.IronMine*5 + Engine.Player.IronDrill*20 + Engine.Player.GildedIronMine*10 - Engine.Player.IronContract*10 - Engine.Player.IRefinery*20 - Engine.Player.SRefinery*10 - Engine.Player.CombIRefinery*40 - Engine.Player.CombSRefinery*30 - Engine.Player.GildedIRefinery*20 - Engine.Player.GildedSRefinery*10;
+			} else {
+				Engine.Values.IronPS = Engine.Player.IronMine*5 + Engine.Player.IronDrill*20 + Engine.Player.GildedIronMine*10 - Engine.Player.IronContract*10 - Engine.Player.IRefinery*20 - Engine.Player.SRefinery*10 - Engine.Player.CombIRefinery*40 - Engine.Player.CombSRefinery*30 - Engine.Player.GildedIRefinery*20;
+			}
 			if (Engine.Values.IronPS < 0) {
 				Engine.Player.Iron += Engine.Player.IronAntiContract*10;
 				Engine.Player.Money -= Engine.Player.IronAntiContract*Engine.Player.IronContractMoney;
@@ -3257,13 +3686,14 @@ var Engine = {
 			//Refined Iron
 			Engine.Player.RefIron += Engine.Player.IRefinery*10;
 			Engine.Player.RefIron += Engine.Player.CombIRefinery*30;
+			Engine.Player.RefIron += Engine.Player.GildedIRefinery*10;
 			Engine.Player.Money += Engine.Player.RefIronContract*Engine.Player.RefIronContractMoney;
 			
 			Engine.Player.RefIron -= Engine.Player.RefIronContract*10;
 			Engine.Player.RefIron -= Engine.Player.MotorFact*10;
 			Engine.Player.RefIron -= Engine.Player.MotorFactArm*30;
 			
-			Engine.Values.RefIronPS = Engine.Player.IRefinery*10 + Engine.Player.CombIRefinery*30 - Engine.Player.RefIronContract*10 - Engine.Player.MotorFact*10 - Engine.Player.MotorFactArm*30;
+			Engine.Values.RefIronPS = Engine.Player.IRefinery*10 + Engine.Player.CombIRefinery*30 + Engine.Player.GildedIRefinery*10 - Engine.Player.RefIronContract*10 - Engine.Player.MotorFact*10 - Engine.Player.MotorFactArm*30;
 			
 			if (Engine.Values.RefIronPS < 0) {
 				Engine.Player.RefIron += Engine.Player.RefIronAntiContract*10;
@@ -3372,7 +3802,7 @@ var Engine = {
 			}
 			
 			//Plane
-			if (Engine.Player.ThirtySecondCounter > 29) {
+			if (Engine.Player.ThirtySecondCounter > (29 - Engine.Player.GildedEngineer)) {
 				if (Engine.Player.Plane < Engine.Player.PlaneLimit) {
 					Engine.Player.Plane += Engine.Player.PlaneFact*1;
 				}
@@ -3391,6 +3821,7 @@ var Engine = {
 			Engine.Player.Coal += Engine.Player.CoalDrill*12;
 			if (Engine.Player.GenCoal > 0) {
 				Engine.Player.Coal += Engine.Player.GildedCoalMine*6;
+				Engine.Player.Coal -= Engine.Player.GildedSRefinery*9;
 			}
 			Engine.Player.Money += Engine.Player.CoalContract*Engine.Player.CoalContractMoney;
 			
@@ -3399,7 +3830,7 @@ var Engine = {
 			Engine.Player.Coal -= Engine.Player.CombSRefinery*27;
 			Engine.Player.Coal -= Engine.Player.CoalPlant*30;
 			if (Engine.Player.GenCoal > 0) {
-				Engine.Values.CoalPS = Engine.Player.CoalMine*3 + Engine.Player.CoalDrill*12 + Engine.Player.GildedCoalMine*6 - Engine.Player.CoalContract*10 - Engine.Player.SRefinery*9 - Engine.Player.CombSRefinery*27 - Engine.Player.CoalPlant*30;
+				Engine.Values.CoalPS = Engine.Player.CoalMine*3 + Engine.Player.CoalDrill*12 + Engine.Player.GildedCoalMine*6 - Engine.Player.CoalContract*10 - Engine.Player.SRefinery*9 - Engine.Player.CombSRefinery*27 - Engine.Player.CoalPlant*30 - Engine.Player.GildedSRefinery*9;
 			} else {
 				Engine.Values.CoalPS = Engine.Player.CoalMine*3 + Engine.Player.CoalDrill*12 - Engine.Player.CoalContract*10 - Engine.Player.SRefinery*9 - Engine.Player.CombSRefinery*27 - Engine.Player.CoalPlant*30;
 			}
@@ -3433,17 +3864,23 @@ var Engine = {
 			//Steel
 			Engine.Player.Steel += Engine.Player.SRefinery*10;
 			Engine.Player.Steel += Engine.Player.CombSRefinery*30;
+			if (Engine.Player.GenCoal > 0) {
+				Engine.Player.Steel += Engine.Player.GildedSRefinery*10;
+			}
 			Engine.Player.Money += Engine.Player.SteelContract*Engine.Player.SteelContractMoney;
 			
 			Engine.Player.Steel -= Engine.Player.SteelContract*10;
 			Engine.Player.Steel -= Engine.Player.MechPartFact*5;
 			Engine.Player.Steel -= Engine.Player.MechPartFactArm*15;
-			Engine.Player.Steel -= Engine.Player.ConsPartFact*20;
 			Engine.Player.Steel -= Engine.Player.MotorFact*5;
 			Engine.Player.Steel -= Engine.Player.MotorFactArm*15;
+			Engine.Player.Steel -= Engine.Player.ConsPartFact*30;
 			
-			Engine.Values.SteelPS = Engine.Player.SRefinery*10 + Engine.Player.CombSRefinery*30 - Engine.Player.SteelContract*10 - Engine.Player.MechPartFact*5 - Engine.Player.MechPartFactArm*15 - Engine.Player.ConsPartFact*20 - Engine.Player.MotorFact*5 - Engine.Player.MotorFactArm*15;
-			
+			if (Engine.Player.GenCoal > 0) {
+				Engine.Values.SteelPS = Engine.Player.SRefinery*10 + Engine.Player.CombSRefinery*30 + Engine.Player.GildedSRefinery*10 - Engine.Player.SteelContract*10 - Engine.Player.MechPartFact*5 - Engine.Player.MechPartFactArm*15 - Engine.Player.ConsPartFact*30 - Engine.Player.MotorFact*5 - Engine.Player.MotorFactArm*15;
+			} else {
+				Engine.Values.SteelPS = Engine.Player.SRefinery*10 + Engine.Player.CombSRefinery*30 - Engine.Player.SteelContract*10 - Engine.Player.MechPartFact*5 - Engine.Player.MechPartFactArm*15 - Engine.Player.ConsPartFact*30 - Engine.Player.MotorFact*5 - Engine.Player.MotorFactArm*15;
+			}
 			if (Engine.Values.SteelPS < 0) {
 				Engine.Player.Steel += Engine.Player.SteelAntiContract*10;
 				Engine.Player.Money -= Engine.Player.SteelAntiContract*Engine.Player.SteelContractMoney;
@@ -3512,7 +3949,7 @@ var Engine = {
 				}
 			}
 			
-			//Cons Part
+			//ConsPart
 			Engine.Player.ConsPart += Engine.Player.ConsPartFact*5;
 			Engine.Player.Money += Engine.Player.ConsPartContract*400;
 			
@@ -3588,6 +4025,7 @@ var Engine = {
 			Engine.Player.Copper += Engine.Player.CopperDrill*20;
 			if (Engine.Player.GenCopper > 0) {
 				Engine.Player.Copper += Engine.Player.GildedCopperMine*10;
+				Engine.Player.Copper -= Engine.Player.GildedCRefinery*15;
 			}
 			Engine.Player.Money += Engine.Player.CopperContract*Engine.Player.CopperContractMoney;
 			
@@ -3596,7 +4034,7 @@ var Engine = {
 			Engine.Player.Copper -= Engine.Player.CombCRefinery*30;
 			
 			if (Engine.Player.GenCopper > 0) {
-				Engine.Values.CopperPS = Engine.Player.CopperMine*5 + Engine.Player.CopperDrill*20 + Engine.Player.GildedCopperMine*10 - Engine.Player.CopperContract*10 - Engine.Player.CRefinery*15 - Engine.Player.CombCRefinery*30;
+				Engine.Values.CopperPS = Engine.Player.CopperMine*5 + Engine.Player.CopperDrill*20 + Engine.Player.GildedCopperMine*10 - Engine.Player.CopperContract*10 - Engine.Player.CRefinery*15 - Engine.Player.CombCRefinery*30 - Engine.Player.GildedCRefinery*15;
 			} else {
 				Engine.Values.CopperPS = Engine.Player.CopperMine*5 + Engine.Player.CopperDrill*20 - Engine.Player.CopperContract*10 - Engine.Player.CRefinery*15 - Engine.Player.CombCRefinery*30;
 			}
@@ -3631,16 +4069,23 @@ var Engine = {
 			//Refined Copper
 			Engine.Player.RefCopper += Engine.Player.CRefinery*10;
 			Engine.Player.RefCopper += Engine.Player.CombCRefinery*30;
+			if (Engine.Player.GenCopper > 0) {
+				Engine.Player.RefCopper += Engine.Player.GildedCRefinery*10;
+			}
 			Engine.Player.Money += Engine.Player.RefCopperContract*Engine.Player.RefCopperContractMoney;
 			
 			Engine.Player.RefCopper -= Engine.Player.RefCopperContract*10;
 			Engine.Player.RefCopper -= Engine.Player.Spooler*50;	
 			Engine.Player.RefCopper -= Engine.Player.SpoolerArm*150;	
 			Engine.Player.RefCopper -= Engine.Player.MechPartFact*5;	
-			Engine.Player.RefCopper -= Engine.Player.MechPartFactArm*15;	
+			Engine.Player.RefCopper -= Engine.Player.MechPartFactArm*15;		
+			Engine.Player.RefCopper -= Engine.Player.ConsPartFact*20;
 			
-			Engine.Values.RefCopperPS = Engine.Player.CRefinery*10 + Engine.Player.CombCRefinery*30 - Engine.Player.RefCopperContract*10 - Engine.Player.Spooler*50 - Engine.Player.SpoolerArm*150 - Engine.Player.MechPartFact*5 - Engine.Player.MechPartFactArm*15;
-			
+			if (Engine.Player.GenCopper > 0) {
+				Engine.Values.RefCopperPS = Engine.Player.CRefinery*10 + Engine.Player.CombCRefinery*30 + Engine.Player.GildedCRefinery*10 - Engine.Player.RefCopperContract*10 - Engine.Player.Spooler*50 - Engine.Player.SpoolerArm*150 - Engine.Player.MechPartFact*5 - Engine.Player.MechPartFactArm*15 - Engine.Player.ConsPartFact*20;
+			} else {
+				Engine.Values.RefCopperPS = Engine.Player.CRefinery*10 + Engine.Player.CombCRefinery*30 - Engine.Player.RefCopperContract*10 - Engine.Player.Spooler*50 - Engine.Player.SpoolerArm*150 - Engine.Player.MechPartFact*5 - Engine.Player.MechPartFactArm*15 - Engine.Player.ConsPartFact*20;
+			}
 			if (Engine.Values.RefCopperPS < 0) {
 				Engine.Player.RefCopper += Engine.Player.RefCopperAntiContract*10;
 				Engine.Player.Money -= Engine.Player.RefCopperAntiContract*Engine.Player.RefCopperContractMoney;
@@ -3759,7 +4204,12 @@ var Engine = {
 			Engine.Player.Oil -= Engine.Player.GRefinery*8;
 			
 			if (Engine.Player.GenOil > 0) {
-				Engine.Values.OilPS = Engine.Player.OilMine*10 + Engine.Player.GildedOilWell*20 - Engine.Player.GRefinery*8 - Engine.Player.PRefinery*12;
+				Engine.Player.Oil -= Engine.Player.GildedPRefinery*12;
+				Engine.Player.Oil -= Engine.Player.GildedGRefinery*8;
+			}
+			
+			if (Engine.Player.GenOil > 0) {
+				Engine.Values.OilPS = Engine.Player.OilMine*10 + Engine.Player.GildedOilWell*20 - Engine.Player.GRefinery*8 - Engine.Player.PRefinery*12 - Engine.Player.GildedPRefinery*12 - Engine.Player.GildedGRefinery*8;
 			} else {
 				Engine.Values.OilPS = Engine.Player.OilMine*10 - Engine.Player.GRefinery*8 - Engine.Player.PRefinery*12;
 			}
@@ -3792,6 +4242,9 @@ var Engine = {
 			
 			//Gas
 			Engine.Player.Gas += Engine.Player.GRefinery*4;
+			if (Engine.Player.GenOil > 0) {
+				Engine.Player.Gas += Engine.Player.GildedGRefinery*4;
+			}
 			Engine.Player.Money += Engine.Player.GasContract*Engine.Player.GasContractMoney;
 			
 			Engine.Player.Gas -= Engine.Player.GasContract*10;
@@ -3799,8 +4252,11 @@ var Engine = {
 			Engine.Player.Gas -= Engine.Player.CoalDrill;
 			Engine.Player.Gas -= Engine.Player.CopperDrill;
 			
-			Engine.Values.GasPS = Engine.Player.GRefinery*4 - Engine.Player.GasContract*10 - Engine.Player.IronDrill - Engine.Player.CoalDrill - Engine.Player.CopperDrill;
-						
+			if (Engine.Player.GenOil > 0) {
+				Engine.Values.GasPS = Engine.Player.GRefinery*4 + Engine.Player.GildedGRefinery*4 - Engine.Player.GasContract*10 - Engine.Player.IronDrill - Engine.Player.CoalDrill - Engine.Player.CopperDrill;
+			} else {	
+				Engine.Values.GasPS = Engine.Player.GRefinery*4 - Engine.Player.GasContract*10 - Engine.Player.IronDrill - Engine.Player.CoalDrill - Engine.Player.CopperDrill;
+			}
 			if (Engine.Values.GasPS < 0) {
 				Engine.Player.Gas += Engine.Player.GasAntiContract*10;
 				Engine.Player.Money -= Engine.Player.GasAntiContract*Engine.Player.GasContractMoney;
@@ -3832,14 +4288,20 @@ var Engine = {
 			
 			//Plastic
 			Engine.Player.Plastic += Engine.Player.PRefinery*4;
+			if (Engine.Player.GenOil > 0) {
+				Engine.Player.Plastic += Engine.Player.GildedPRefinery*4;
+			}
 			Engine.Player.Money += Engine.Player.PlasticContract*Engine.Player.PlasticContractMoney;
 			
 			Engine.Player.Plastic -= Engine.Player.PlasticContract*10;
 			Engine.Player.Plastic -= Engine.Player.ElecFact*10;
 			Engine.Player.Plastic -= Engine.Player.ElecFactArm*30;
 			
-			Engine.Values.PlasticPS = Engine.Player.PRefinery*4 - Engine.Player.PlasticContract*10 - Engine.Player.ElecFact*10 - Engine.Player.ElecFactArm*30;
-						
+			if (Engine.Player.GenOil > 0) {
+				Engine.Values.PlasticPS = Engine.Player.PRefinery*4 + Engine.Player.GildedPRefinery*4 - Engine.Player.PlasticContract*10 - Engine.Player.ElecFact*10 - Engine.Player.ElecFactArm*30;
+			} else {
+				Engine.Values.PlasticPS = Engine.Player.PRefinery*4 - Engine.Player.PlasticContract*10 - Engine.Player.ElecFact*10 - Engine.Player.ElecFactArm*30;
+			}			
 			if (Engine.Values.PlasticPS < 0) {
 				Engine.Player.Plastic += Engine.Player.PlasticAntiContract*10;
 				Engine.Player.Money -= Engine.Player.PlasticAntiContract*Engine.Player.PlasticContractMoney;
@@ -3979,7 +4441,7 @@ var Engine = {
 			
 			
 			//Power
-			Engine.Player.MWh = Engine.Player.CoalPlant*40 + Engine.Player.SolarPlant*5 + Engine.Player.SolarRoad*10 + Engine.Player.NuclearPlant*150 - (Engine.Player.IRefinery + Engine.Player.SRefinery + Engine.Player.CRefinery + Engine.Player.CombIRefinery + Engine.Player.CombSRefinery + Engine.Player.CombCRefinery + Engine.Player.GRefinery + Engine.Player.PRefinery)*1 - (Engine.Player.MotorFact + Engine.Player.MechPartFact + Engine.Player.ConsPartFact + Engine.Player.Spooler + Engine.Player.ElecFact + Engine.Player.LightbulbFact + Engine.Player.ACFact + Engine.Player.CarFact)*3 - (Engine.Player.MotorFactArm + Engine.Player.MechPartFactArm + Engine.Player.SpoolerArm + Engine.Player.ElecFactArm + Engine.Player.LightbulbFactArm + Engine.Player.ACFactArm + Engine.Player.CarFactArm)*15 - (Engine.Player.Shifter + Engine.Player.Workshop + Engine.Player.Apartment + Engine.Player.Office + Engine.Player.Dealership)*2;
+			Engine.Player.MWh = Engine.Player.CoalPlant*40 + Engine.Player.SolarPlant*5 + Engine.Player.SolarRoad*10 + Engine.Player.NuclearPlant*125 - (Engine.Player.IRefinery + Engine.Player.SRefinery + Engine.Player.CRefinery + Engine.Player.CombIRefinery + Engine.Player.CombSRefinery + Engine.Player.CombCRefinery + Engine.Player.GRefinery + Engine.Player.PRefinery)*1 - (Engine.Player.MotorFact + Engine.Player.MechPartFact + Engine.Player.ConsPartFact + Engine.Player.Spooler + Engine.Player.ElecFact + Engine.Player.LightbulbFact + Engine.Player.ACFact + Engine.Player.CarFact)*3 - (Engine.Player.MotorFactArm + Engine.Player.MechPartFactArm + Engine.Player.SpoolerArm + Engine.Player.ElecFactArm + Engine.Player.LightbulbFactArm + Engine.Player.ACFactArm + Engine.Player.CarFactArm)*15 - (Engine.Player.Shifter + Engine.Player.Workshop + Engine.Player.Apartment + Engine.Player.Office + Engine.Player.Dealership)*2;
 			
 			Engine.Values.MWhMoney = Math.round(Engine.Player.MWh*Engine.Player.MWhCost);
 			
@@ -4002,8 +4464,6 @@ var Engine = {
 			Engine.Display.IronAntiContract.innerHTML = Engine.Player.IronAntiContract;
 			
 			Engine.Display.IronPS.innerHTML = Engine.Values.IronPS;
-			Engine.Display.IronContractIron.innerHTML = Engine.Values.IronContractIron;
-			Engine.Display.IronContractMoney.innerHTML = Engine.Values.IronContractMoney;
 			
 			//RefIron
 			Engine.Display.RefIron.innerHTML = Engine.Player.RefIron;
@@ -4018,9 +4478,6 @@ var Engine = {
 			Engine.Display.RefIronAntiContract.innerHTML = Engine.Player.RefIronAntiContract;
 			
 			Engine.Display.RefIronPS.innerHTML = Engine.Values.RefIronPS;
-			Engine.Display.IRefineryIron.innerHTML = Engine.Values.IRefineryIron;
-			Engine.Display.RefIronContractRefIron.innerHTML = Engine.Values.RefIronContractRefIron;
-			Engine.Display.RefIronContractMoney.innerHTML = Engine.Values.RefIronContractMoney;
 			
 			//Motor
 			Engine.Display.Motor.innerHTML = Engine.Player.Motor;
@@ -4034,10 +4491,6 @@ var Engine = {
 			Engine.Display.MotorAntiContract.innerHTML = Engine.Player.MotorAntiContract;
 			
 			Engine.Display.MotorPS.innerHTML = Engine.Values.MotorPS;
-			Engine.Display.MotorFactRefIron.innerHTML = Engine.Values.MotorFactRefIron;
-			Engine.Display.MotorFactSteel.innerHTML = Engine.Values.MotorFactSteel;
-			Engine.Display.MotorContractMotor.innerHTML = Engine.Values.MotorContractMotor;
-			Engine.Display.MotorContractMoney.innerHTML = Engine.Values.MotorContractMoney;
 			
 			//Car
 			Engine.Display.Car.innerHTML = Engine.Player.Car;
@@ -4051,24 +4504,14 @@ var Engine = {
 			Engine.Display.CarAntiContract.innerHTML = Engine.Player.CarAntiContract;
 			
 			Engine.Display.CarPS.innerHTML = Engine.Values.CarPS;
-			Engine.Display.CarFactMotor.innerHTML = Engine.Values.CarFactMotor;
-			Engine.Display.CarFactMechPart.innerHTML = Engine.Values.CarFactMechPart;
-			Engine.Display.CarFactElec.innerHTML = Engine.Values.CarFactElec;
-			Engine.Display.CarFactGlass.innerHTML = Engine.Values.CarFactGlass;
-			Engine.Display.CarContractCar.innerHTML = Engine.Values.CarContractCar;
-			Engine.Display.CarContractMoney.innerHTML = Engine.Values.CarContractMoney;
 			
 			//Plane
 			Engine.Display.Plane.innerHTML = Engine.Player.Plane;
 			Engine.Display.PlaneFact.innerHTML = Engine.Player.PlaneFact;
 			Engine.Display.PlaneFactCost.innerHTML = Engine.Player.PlaneFactCost;
-			Engine.Display.ThirtySecondCounter.innerHTML = (30 - Engine.Player.ThirtySecondCounter);
+			Engine.Display.ThirtySecondCounter.innerHTML = ((30 - Engine.Player.GildedEngineer) - Engine.Player.ThirtySecondCounter);
 			
 			Engine.Display.PlanePS.innerHTML = Engine.Values.PlanePS;
-			Engine.Display.PlaneFactMotor.innerHTML = Engine.Values.PlaneFactMotor;
-			Engine.Display.PlaneFactMechPart.innerHTML = Engine.Values.PlaneFactMechPart;
-			Engine.Display.PlaneFactElec.innerHTML = Engine.Values.PlaneFactElec;
-			Engine.Display.PlaneFactGlass.innerHTML = Engine.Values.PlaneFactGlass;
 			
 			//Coal
 			Engine.Display.Coal.innerHTML = Engine.Player.Coal;
@@ -4099,8 +4542,6 @@ var Engine = {
 			Engine.Display.SteelAntiContract.innerHTML = Engine.Player.SteelAntiContract;
 			
 			Engine.Display.SteelPS.innerHTML = Engine.Values.SteelPS;
-			Engine.Display.SRefineryIron.innerHTML = Engine.Values.SRefineryIron;
-			Engine.Display.SRefineryCoal.innerHTML = Engine.Values.SRefineryCoal;
 			Engine.Display.SteelContractSteel.innerHTML = Engine.Values.SteelContractSteel;
 			Engine.Display.SteelContractMoney.innerHTML = Engine.Values.SteelContractMoney;
 			
@@ -4113,8 +4554,6 @@ var Engine = {
 			Engine.Display.MechPartAntiContract.innerHTML = Engine.Player.MechPartAntiContract;
 			
 			Engine.Display.MechPartPS.innerHTML = Engine.Values.MechPartPS;
-			Engine.Display.MechPartFactSteel.innerHTML = Engine.Values.MechPartFactSteel;
-			Engine.Display.MechPartFactRefCopper.innerHTML = Engine.Values.MechPartFactRefCopper;
 			
 			//ConsPart
 			Engine.Display.ConsPart.innerHTML = Engine.Player.ConsPart;
@@ -4124,7 +4563,6 @@ var Engine = {
 			Engine.Display.ConsPartAntiContract.innerHTML = Engine.Player.ConsPartAntiContract;
 			
 			Engine.Display.ConsPartPS.innerHTML = Engine.Values.ConsPartPS;
-			Engine.Display.ConsPartFactSteel.innerHTML = Engine.Values.ConsPartFactSteel;
 			
 			//AC
 			Engine.Display.AC.innerHTML = Engine.Player.AC;
@@ -4139,9 +4577,6 @@ var Engine = {
 			Engine.Display.ACAntiContract.innerHTML = Engine.Player.ACAntiContract;
 			
 			Engine.Display.ACPS.innerHTML = Engine.Values.ACPS;
-			Engine.Display.ACFactMechPart.innerHTML = Engine.Values.ACFactMechPart;
-			Engine.Display.ACFactMotor.innerHTML = Engine.Values.ACFactMotor;
-			Engine.Display.ACFactSpool.innerHTML = Engine.Values.ACFactSpool;
 			Engine.Display.ACContractAC.innerHTML = Engine.Values.ACContractAC;
 			Engine.Display.ACContractMoney.innerHTML = Engine.Values.ACContractMoney;
 			
@@ -4174,7 +4609,6 @@ var Engine = {
 			Engine.Display.RefCopperAntiContract.innerHTML = Engine.Player.RefCopperAntiContract;
 			
 			Engine.Display.RefCopperPS.innerHTML = Engine.Values.RefCopperPS;
-			Engine.Display.CRefineryCopper.innerHTML = Engine.Values.CRefineryCopper;
 			Engine.Display.RefCopperContractRefCopper.innerHTML = Engine.Values.RefCopperContractRefCopper;
 			Engine.Display.RefCopperContractMoney.innerHTML = Engine.Values.RefCopperContractMoney;
 			
@@ -4191,7 +4625,6 @@ var Engine = {
 			Engine.Display.SpoolAntiContract.innerHTML = Engine.Player.SpoolAntiContract;
 			
 			Engine.Display.SpoolPS.innerHTML = Engine.Values.SpoolPS;
-			Engine.Display.SpoolerRefCopper.innerHTML = Engine.Values.SpoolerRefCopper;
 			Engine.Display.SpoolContractSpool.innerHTML = Engine.Values.SpoolContractSpool;
 			Engine.Display.SpoolContractMoney.innerHTML = Engine.Values.SpoolContractMoney;
 			
@@ -4208,8 +4641,6 @@ var Engine = {
 			Engine.Display.ElecAntiContract.innerHTML = Engine.Player.ElecAntiContract;
 			
 			Engine.Display.ElectronicPS.innerHTML = Engine.Values.ElectronicPS;
-			Engine.Display.ElecFactSpool.innerHTML = Engine.Values.ElecFactSpool;
-			Engine.Display.ElecFactPlastic.innerHTML = Engine.Values.ElecFactPlastic;
 			Engine.Display.ElecContractElec.innerHTML = Engine.Values.ElecContractElec;
 			Engine.Display.ElecContractMoney.innerHTML = Engine.Values.ElecContractMoney;
 			
@@ -4240,7 +4671,6 @@ var Engine = {
 			Engine.Display.GasAntiContract.innerHTML = Engine.Player.GasAntiContract;
 			
 			Engine.Display.GasPS.innerHTML = Engine.Values.GasPS;
-			Engine.Display.GRefineryOil.innerHTML = Engine.Values.GRefineryOil;
 			Engine.Display.GasContractGas.innerHTML = Engine.Values.GasContractGas;
 			Engine.Display.GasContractMoney.innerHTML = Engine.Values.GasContractMoney;
 			
@@ -4253,7 +4683,6 @@ var Engine = {
 			Engine.Display.PlasticContractCost.innerHTML = Engine.Player.PlasticContractCost;
 			
 			Engine.Display.PlasticPS.innerHTML = Engine.Values.PlasticPS;
-			Engine.Display.PRefineryOil.innerHTML = Engine.Values.PRefineryOil;
 			Engine.Display.PlasticContractPlastic.innerHTML = Engine.Values.PlasticContractPlastic;
 			Engine.Display.PlasticContractMoney.innerHTML = Engine.Values.PlasticContractMoney;
 			
@@ -4300,8 +4729,6 @@ var Engine = {
 			Engine.Display.LightbulbAntiContract.innerHTML = Engine.Player.LightbulbAntiContract;
 			
 			Engine.Display.LightbulbPS.innerHTML = Engine.Values.LightbulbPS;
-			Engine.Display.LightbulbFactSpool.innerHTML = Engine.Values.LightbulbFactSpool;
-			Engine.Display.LightbulbFactGlass.innerHTML = Engine.Values.LightbulbFactGlass;
 			Engine.Display.LightbulbContractLightbulb.innerHTML = Engine.Values.LightbulbContractLightbulb;
 			Engine.Display.LightbulbContractMoney.innerHTML = Engine.Values.LightbulbContractMoney;
 			
@@ -4410,6 +4837,84 @@ var Engine = {
 			
 			
 			
+			/*
+			-----
+			Construction Workings
+			----
+			*/
+			Engine.Display.Permit.innerHTML = Engine.Player.Permit;
+			Engine.Display.PermitCost.innerHTML = Engine.Player.PermitCost;
+			Engine.Display.Warehouse.innerHTML = Engine.Player.Warehouse;
+			Engine.Display.Skyscraper.innerHTML = Engine.Player.Skyscraper;
+			
+			
+			Engine.Display.WarehouseConsPartCost.innerHTML = Engine.Player.WarehouseConsPartCost;
+			Engine.Display.WarehouseGlassCost.innerHTML = Engine.Player.WarehouseGlassCost;
+			Engine.Display.WarehouseACCost.innerHTML = Engine.Player.WarehouseACCost;
+			Engine.Display.WarehouseSpoolCost.innerHTML = Engine.Player.WarehouseSpoolCost;
+			Engine.Display.WarehouseLightbulbCost.innerHTML = Engine.Player.WarehouseLightbulbCost;
+			
+			
+			Engine.Display.SkyscraperConsPartCost.innerHTML = Engine.Player.SkyscraperConsPartCost;
+			Engine.Display.SkyscraperGlassCost.innerHTML = Engine.Player.SkyscraperGlassCost;
+			Engine.Display.SkyscraperACCost.innerHTML = Engine.Player.SkyscraperACCost;
+			Engine.Display.SkyscraperSpoolCost.innerHTML = Engine.Player.SkyscraperSpoolCost;
+			Engine.Display.SkyscraperLightbulbCost.innerHTML = Engine.Player.SkyscraperLightbulbCost;
+			
+			if (Engine.Player.BuildTime > 0) {
+				Engine.Player.BuildTime--;
+				if (Engine.Player.BuildTime < 1) {
+					if (Engine.Player.Building = 1) {
+						Engine.Player.Building = 0;
+						Engine.Player.Warehouse++;
+					}
+					if (Engine.Player.Building = 2) {
+						Engine.Player.Building = 0;
+						Engine.Player.Skyscraper++;
+					}
+				}
+			} else {
+			}
+			
+			Engine.Player.WarehouseBuildTime = Engine.Player.WarehouseBuildTimeBase/(1 + (Engine.Player.GildedForeman*0.2));
+			Engine.Player.SkyscraperBuildTime = Engine.Player.SkyscraperBuildTimeBase/(1 + (Engine.Player.GildedForeman*0.2));
+			
+			
+			
+			Engine.Player.Money += Engine.Player.Warehouse*3000
+			Engine.Player.Money += Engine.Player.Skyscraper*42500
+			
+			Engine.Display.WarehouseBuildTime.innerHTML = Engine.Player.WarehouseBuildTime;
+			Engine.Display.SkyscraperBuildTime.innerHTML = Engine.Player.SkyscraperBuildTime;
+			Engine.Display.BuildTime.innerHTML = Engine.Player.BuildTime;
+			
+			
+			/*
+			-----
+			CRIME :O
+			----
+			*/
+			
+			Engine.Player.Weed += Engine.Player.WeedPlant;
+			Engine.Player.Weed -= Engine.Player.WeedDealer*5;
+			Engine.Player.Money += Engine.Player.WeedDealer*45;
+			
+			while (Engine.Player.Weed < 0) {
+				Engine.Player.Weed += Engine.Player.WeedDealer*5;
+				Engine.Player.WeedDealer--;
+				Engine.Player.Weed -= Engine.Player.WeedDealer*5;
+				Engine.Status("Ran out of Weed! Lost a Dealer!");
+			}
+			
+			
+			Engine.Values.WeedPS = Engine.Player.WeedPlant - Engine.Player.WeedDealer*5;
+			
+			Engine.Display.Weed.innerHTML = Engine.Player.Weed;
+			Engine.Display.WeedPS.innerHTML = Engine.Values.WeedPS;
+			Engine.Display.WeedPlant.innerHTML = Engine.Player.WeedPlant;
+			Engine.Display.WeedPlantCost.innerHTML = Engine.Player.WeedPlantCost;
+			Engine.Display.WeedDealer.innerHTML = Engine.Player.WeedDealer;
+			Engine.Display.WeedDealerCost.innerHTML = Engine.Player.WeedDealerCost;
 			
 			
 			
@@ -4452,16 +4957,14 @@ var Engine = {
 			
 			
 			// Value Change
-			Engine.Values.MoneyPS = (Engine.Player.IronContract - Engine.Player.IronAntiContract)*Engine.Player.IronContractMoney + (Engine.Player.RefIronContract - Engine.Player.RefIronAntiContract)*Engine.Player.RefIronContractMoney + (Engine.Player.MechPartContract - Engine.Player.MechPartAntiContract)*400 + (Engine.Player.MotorContract - Engine.Player.MotorAntiContract)*Engine.Player.MotorContractMoney + (Engine.Player.CarContract - Engine.Player.CarAntiContract)*Engine.Player.CarContractMoney + (Engine.Player.CoalContract - Engine.Player.CoalAntiContract)*Engine.Player.CoalContractMoney + (Engine.Player.SteelContract - Engine.Player.SteelAntiContract)*Engine.Player.SteelContractMoney + (Engine.Player.ConsPartContract - Engine.Player.ConsPartAntiContract)*400 + (Engine.Player.ACContract - Engine.Player.ACAntiContract)*Engine.Player.ACContractMoney + (Engine.Player.CopperContract - Engine.Player.CopperAntiContract)*Engine.Player.CopperContractMoney + (Engine.Player.RefCopperContract - Engine.Player.RefCopperAntiContract)*Engine.Player.RefCopperContractMoney + (Engine.Player.SpoolContract - Engine.Player.SpoolAntiContract)*Engine.Player.SpoolContractMoney + (Engine.Player.ElecContract - Engine.Player.ElecAntiContract)*Engine.Player.ElecContractMoney + (0 - Engine.Player.OilAntiContract)*60 + Engine.Player.GasContract*Engine.Player.GasContractMoney + (Engine.Player.PlasticContract - Engine.Player.PlasticAntiContract)*Engine.Player.PlasticContractMoney + (0 - Engine.Player.SandAntiContract)*600 + (Engine.Player.GlassContract - Engine.Player.GlassAntiContract)*Engine.Player.GlassContractMoney + (Engine.Player.LightbulbContract - Engine.Player.LightbulbAntiContract)*Engine.Player.LightbulbContractMoney + Math.round(Engine.Player.MWh*Engine.Player.MWhCost) + Engine.Player.Dealership*Engine.Player.CarDealerMoney + Engine.Player.Plane*Engine.Player.AirportMoney;
+			Engine.Values.MoneyPS = (Engine.Player.IronContract - Engine.Player.IronAntiContract)*Engine.Player.IronContractMoney + (Engine.Player.RefIronContract - Engine.Player.RefIronAntiContract)*Engine.Player.RefIronContractMoney + (Engine.Player.MechPartContract - Engine.Player.MechPartAntiContract)*400 + (Engine.Player.MotorContract - Engine.Player.MotorAntiContract)*Engine.Player.MotorContractMoney + (Engine.Player.CarContract - Engine.Player.CarAntiContract)*Engine.Player.CarContractMoney + (Engine.Player.CoalContract - Engine.Player.CoalAntiContract)*Engine.Player.CoalContractMoney + (Engine.Player.SteelContract - Engine.Player.SteelAntiContract)*Engine.Player.SteelContractMoney + (Engine.Player.ConsPartContract - Engine.Player.ConsPartAntiContract)*400 + (Engine.Player.ACContract - Engine.Player.ACAntiContract)*Engine.Player.ACContractMoney + (Engine.Player.CopperContract - Engine.Player.CopperAntiContract)*Engine.Player.CopperContractMoney + (Engine.Player.RefCopperContract - Engine.Player.RefCopperAntiContract)*Engine.Player.RefCopperContractMoney + (Engine.Player.SpoolContract - Engine.Player.SpoolAntiContract)*Engine.Player.SpoolContractMoney + (Engine.Player.ElecContract - Engine.Player.ElecAntiContract)*Engine.Player.ElecContractMoney + (0 - Engine.Player.OilAntiContract)*60 + Engine.Player.GasContract*Engine.Player.GasContractMoney + (Engine.Player.PlasticContract - Engine.Player.PlasticAntiContract)*Engine.Player.PlasticContractMoney + (0 - Engine.Player.SandAntiContract)*600 + (Engine.Player.GlassContract - Engine.Player.GlassAntiContract)*Engine.Player.GlassContractMoney + (Engine.Player.LightbulbContract - Engine.Player.LightbulbAntiContract)*Engine.Player.LightbulbContractMoney + Math.round(Engine.Player.MWh*Engine.Player.MWhCost) + Engine.Player.Dealership*Engine.Player.CarDealerMoney + Engine.Player.Plane*Engine.Player.AirportMoney + Engine.Player.Warehouse*3000 + Engine.Player.WeedDealer*45;
 			
 			
-			Engine.Values.IronContractIron = Engine.Player.IronContract*10;
+			Engine.Values.IronContractIron.innerHTML = Engine.Player.IronContract*10;
+			Engine.Values.IronContractMoney.innerHTML = Engine.Player.IronContract*Engine.Player.IronContractMoney;
 			
-			Engine.Values.CoalContractCoal = Engine.Player.CoalContract*10;
-			
-			Engine.Values.IRefineryIron = Engine.Player.IRefinery*20;
-			Engine.Values.CombIRefineryIron = Engine.Player.CombIRefinery*40;
-			Engine.Values.RefIronContractRefIron = Engine.Player.RefIronContract*10;
+			Engine.Values.RefIronContractRefIron.innerHTML = Engine.Player.RefIronContract*10;
+			Engine.Values.RefIronContractMoney.innerHTML = Engine.Player.RefIronContract*Engine.Player.RefIronContractMoney;
 			
 			Engine.Values.MechPartFactSteel = Engine.Player.MechPartFact*5;
 			Engine.Values.MechPartFactRefCopper = Engine.Player.MechPartFact*5;
@@ -4469,18 +4972,22 @@ var Engine = {
 			
 			Engine.Values.MotorFactRefIron = Engine.Player.MotorFact*10;
 			Engine.Values.MotorFactSteel = Engine.Player.MotorFact*5;
-			Engine.Values.MotorContractMotor = Engine.Player.MotorContract*1;
+			Engine.Values.MotorContractMotor.innerHTML = Engine.Player.MotorContract*1;
+			Engine.Values.MotorContractMoney.innerHTML = Engine.Player.MotorContract*Engine.Player.MotorContractMoney;
 			
 			Engine.Values.CarFactMotor = Engine.Player.CarFact*2;
 			Engine.Values.CarFactMechPart = Engine.Player.CarFact*10;
 			Engine.Values.CarFactElec = Engine.Player.CarFact*5;
 			Engine.Values.CarFactGlass = Engine.Player.CarFact*5;
-			Engine.Values.CarContractCar = Engine.Player.CarContract*1;
+			Engine.Values.CarContractCar.innerHTML = Engine.Player.CarContract*2;
+			Engine.Values.CarContractMoney.innerHTML = Engine.Player.CarContract*Engine.Player.CarContractMoney;
 			
 			Engine.Values.PlaneFactMotor = Engine.Player.PlaneFact*10;
 			Engine.Values.PlaneFactMechPart = Engine.Player.PlaneFact*70;
 			Engine.Values.PlaneFactElec = Engine.Player.PlaneFact*50;
 			Engine.Values.PlaneFactGlass = Engine.Player.PlaneFact*20;
+			
+			Engine.Values.CoalContractCoal.innerHTML = Engine.Player.CoalContract*10;
 			
 			Engine.Values.SRefineryIron = Engine.Player.SRefinery*10;
 			Engine.Values.CombSRefineryIron = Engine.Player.CombSRefinery*30;
@@ -4526,7 +5033,6 @@ var Engine = {
 			//SAND
 			
 			Engine.Values.GlassFurnaceSand = Engine.Player.GlassFurnace*15;
-			Engine.Display.GlassFurnaceSand.innerHTML = Engine.Values.GlassFurnaceSand;
 			Engine.Values.GlassContractGlass = Engine.Player.GlassContract*10;
 			Engine.Display.GlassContractGlass.innerHTML = Engine.Values.GlassContractGlass;
 			
@@ -4545,18 +5051,38 @@ var Engine = {
 			
 			/*
 			----------
-			Gilded
+			GildedDisplay
 			----------
 			*/
 			
 			Engine.Display.GildedIronMine.innerHTML = Engine.Player.GildedIronMine;
 			Engine.Display.GildedIronMineCost.innerHTML = Engine.Player.GildedIronMineCost;
+					Engine.Display.GildedIRefinery.innerHTML = Engine.Player.GildedIRefinery;
+					Engine.Display.GildedIRefineryCost.innerHTML = Engine.Player.GildedIRefineryCost;
+					
 			Engine.Display.GildedCoalMine.innerHTML = Engine.Player.GildedCoalMine;
 			Engine.Display.GildedCoalMineCost.innerHTML = Engine.Player.GildedCoalMineCost;
+					Engine.Display.GildedSRefinery.innerHTML = Engine.Player.GildedSRefinery;
+					Engine.Display.GildedSRefineryCost.innerHTML = Engine.Player.GildedSRefineryCost;
+					
 			Engine.Display.GildedCopperMine.innerHTML = Engine.Player.GildedCopperMine;
 			Engine.Display.GildedCopperMineCost.innerHTML = Engine.Player.GildedCopperMineCost;
+					Engine.Display.GildedCRefinery.innerHTML = Engine.Player.GildedCRefinery;
+					Engine.Display.GildedCRefineryCost.innerHTML = Engine.Player.GildedCRefineryCost;
+					
 			Engine.Display.GildedOilWell.innerHTML = Engine.Player.GildedOilWell;
 			Engine.Display.GildedOilWellCost.innerHTML = Engine.Player.GildedOilWellCost;
+					Engine.Display.GildedGRefinery.innerHTML = Engine.Player.GildedGRefinery;
+					Engine.Display.GildedGRefineryCost.innerHTML = Engine.Player.GildedGRefineryCost;
+					Engine.Display.GildedPRefinery.innerHTML = Engine.Player.GildedPRefinery;
+					Engine.Display.GildedPRefineryCost.innerHTML = Engine.Player.GildedPRefineryCost;
+					
+			
+			Engine.Display.GildedEngineer.innerHTML = Engine.Player.GildedEngineer;
+			Engine.Display.GildedEngineerCost.innerHTML = Engine.Player.GildedEngineerCost;
+			
+			Engine.Display.GildedForeman.innerHTML = Engine.Player.GildedForeman;
+			Engine.Display.GildedForemanCost.innerHTML = Engine.Player.GildedForemanCost;
 			
 			
 			
@@ -4576,83 +5102,307 @@ var Engine = {
 			if (Engine.Player.Iron > 0) {
 				document.getElementById("IronResource").className = "swMain";
 			}
+			
+			if (Engine.Player.IronAntiContract > 0) {
+				document.getElementById("IronMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.IronAntiContract < 1) {
+				document.getElementById("IronMark").className = "MarkInvisible";
+			}
+			
 		
 			if (Engine.Player.RefIron > 0) {
 				document.getElementById("RefIronResource").className = "swMain";
 			}
+			
+			if (Engine.Player.RefIronAntiContract > 0) {
+				document.getElementById("RefIronMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.RefIronAntiContract < 1) {
+				document.getElementById("RefIronMark").className = "MarkInvisible";
+			}
+			
 		
 			if (Engine.Player.Motor > 0) {
 				document.getElementById("MotorResource").className = "swMain";
 			}
+			
+			if (Engine.Player.MotorAntiContract > 0) {
+				document.getElementById("MotorMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.MotorAntiContract < 1) {
+				document.getElementById("MotorMark").className = "MarkInvisible";
+			}
+			
+		
 		
 			if (Engine.Player.Car > 0) {
 				document.getElementById("CarResource").className = "swMain";
 			}
+			
+			if (Engine.Player.CarAntiContract > 0) {
+				document.getElementById("CarMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.CarAntiContract < 1) {
+				document.getElementById("CarMark").className = "MarkInvisible";
+			}
+			
+		
 		
 			if (Engine.Player.PlaneLimit > 0) {
 				document.getElementById("PlaneResource").className = "swMain";
 			}
+			
+			if (Engine.Player.PlaneAntiContract > 0) {
+				document.getElementById("PlaneMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.PlaneAntiContract < 1) {
+				document.getElementById("PlaneMark").className = "MarkInvisible";
+			}
+			
+		
 		
 		
 			if (Engine.Player.Coal > 0) {
 				document.getElementById("CoalResource").className = "swMain";
 			}
+			
+			if (Engine.Player.CoalAntiContract > 0) {
+				document.getElementById("CoalMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.CoalAntiContract < 1) {
+				document.getElementById("CoalMark").className = "MarkInvisible";
+			}
+			
+		
 		
 			if (Engine.Player.Steel > 0) {
 				document.getElementById("SteelResource").className = "swMain";
 			}
+			
+			if (Engine.Player.SteelAntiContract > 0) {
+				document.getElementById("SteelMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.SteelAntiContract < 1) {
+				document.getElementById("SteelMark").className = "MarkInvisible";
+			}
+			
+		
 		
 			if (Engine.Player.MechPart > 0) {
 				document.getElementById("MechPartResource").className = "swMain";
 			}
+			
+			if (Engine.Player.MechPartAntiContract > 0) {
+				document.getElementById("MechPartMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.MechPartAntiContract < 1) {
+				document.getElementById("MechPartMark").className = "MarkInvisible";
+			}
+			
+		
 		
 			if (Engine.Player.AC > 0) {
 				document.getElementById("ACResource").className = "swMain";
 			}
 			
+			if (Engine.Player.ACAntiContract > 0) {
+				document.getElementById("ACMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.ACAntiContract < 1) {
+				document.getElementById("ACMark").className = "MarkInvisible";
+			}
+			
+			
+		
+		
+			if (Engine.Player.ConsPart > 0) {
+				document.getElementById("ConsPartResource").className = "swMain";
+			}
+			
+			if (Engine.Player.ConsPartAntiContrConsPartt > 0) {
+				document.getElementById("ConsPartMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.ConsPartAntiContrConsPartt < 1) {
+				document.getElementById("ConsPartMark").className = "MarkInvisible";
+			}
+			
+		
+		
+			if (Engine.Player.BuildTime > 0) {
+				document.getElementById("BuildTimeResource").className = "swMain";
+			}
+			
+		
+			
 		
 			if (Engine.Player.Copper > 0) {
 				document.getElementById("CopperResource").className = "swMain";
 			}
+			
+			if (Engine.Player.CopperAntiContract > 0) {
+				document.getElementById("CopperMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.CopperAntiContract < 1) {
+				document.getElementById("CopperMark").className = "MarkInvisible";
+			}
+			
+		
 		
 			if (Engine.Player.RefCopper > 0) {
 				document.getElementById("RefCopperResource").className = "swMain";
 			}
 			
+			if (Engine.Player.RefCopperAntiContract > 0) {
+				document.getElementById("RefCopperMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.RefCopperAntiContract < 1) {
+				document.getElementById("RefCopperMark").className = "MarkInvisible";
+			}
+			
+		
+			
 			if (Engine.Player.Spool > 0) {
 				document.getElementById("SpoolResource").className = "swMain";
 			}
+			
+			if (Engine.Player.SpoolAntiContract > 0) {
+				document.getElementById("SpoolMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.SpoolAntiContract < 1) {
+				document.getElementById("SpoolMark").className = "MarkInvisible";
+			}
+			
+		
 		
 			if (Engine.Player.Electronic > 0) {
 				document.getElementById("ElectronicResource").className = "swMain";
 			}
-
+			
+			if (Engine.Player.ElecAntiContract > 0) {
+				document.getElementById("ElecMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.ElecAntiContract < 1) {
+				document.getElementById("ElecMark").className = "MarkInvisible";
+			}
+			
+		
+		
 			
 		
 			if (Engine.Player.Oil > 0) {
 				document.getElementById("OilResource").className = "swMain";
 			}
+			
+			if (Engine.Player.OilAntiContract > 0) {
+				document.getElementById("OilMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.OilAntiContract < 1) {
+				document.getElementById("OilMark").className = "MarkInvisible";
+			}
+			
+		
 		
 			if (Engine.Player.Gas > 0) {
 				document.getElementById("GasResource").className = "swMain";
 			}
 			
+			if (Engine.Player.GasAntiContract > 0) {
+				document.getElementById("GasMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.GasAntiContract < 1) {
+				document.getElementById("GasMark").className = "MarkInvisible";
+			}
+			
+		
+			
 			if (Engine.Player.Plastic > 0) {
 				document.getElementById("PlasticResource").className = "swMain";
 			}
+			
+			if (Engine.Player.PlasticAntiContract > 0) {
+				document.getElementById("PlasticMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.PlasticAntiContract < 1) {
+				document.getElementById("PlasticMark").className = "MarkInvisible";
+			}
+			
+		
 			
 		
 			if (Engine.Player.Sand > 0) {
 				document.getElementById("SandResource").className = "swMain";
 			}
 			
+			if (Engine.Player.SandAntiContract > 0) {
+				document.getElementById("SandMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.SandAntiContract < 1) {
+				document.getElementById("SandMark").className = "MarkInvisible";
+			}
+			
+		
+			
 			if (Engine.Player.Glass > 0) {
 				document.getElementById("GlassResource").className = "swMain";
 			}
 			
+			if (Engine.Player.GlassAntiContract > 0) {
+				document.getElementById("GlassMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.GlassAntiContract < 1) {
+				document.getElementById("GlassMark").className = "MarkInvisible";
+			}
+			
+		
+			
 			if (Engine.Player.Lightbulb > 0) {
 				document.getElementById("LightbulbResource").className = "swMain";
 			}
+			
+			if (Engine.Player.LightbulbAntiContract > 0) {
+				document.getElementById("LightbulbMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.LightbulbAntiContract < 1) {
+				document.getElementById("LightbulbMark").className = "MarkInvisible";
+			}
+			
+			
+		
+			
+			if (Engine.Player.Weed > 0) {
+				document.getElementById("WeedResource").className = "swMain";
+			}
+			
+			if (Engine.Player.WeedAntiContract > 0) {
+				document.getElementById("WeedMark").className = "MarkVisible";
+			}
+			
+			if (Engine.Player.WeedAntiContract < 1) {
+				document.getElementById("WeedMark").className = "MarkInvisible";
+			}
+			
+		
 
 			
 			
@@ -4688,6 +5438,10 @@ var Engine = {
 			
 			if (Engine.Player.PlaneFact > 0) {
 				document.getElementById("AirportTab2").className = "swMain";
+			}
+			
+			if (Engine.Player.ConsPartFact > 0) {
+				document.getElementById("ConstructionTab2").className = "swMain";
 			}
 			
 			if (Engine.Player.GoldCoin > 0) {
@@ -4734,6 +5488,16 @@ var Engine = {
 			return false;
 		});
 		
+		Engine.Clickables.Color = document.getElementById("Color");
+		Engine.Clickables.Color.addEventListener("click", function() {
+			if (document.getElementById("BodyColor").className = "HolyGrailWhite") {
+				document.getElementById("BodyColor").className = "HolyGrailGray";
+			} else {
+				document.getElementById("BodyColor").className = "HolyGrailWhite";
+				return false;
+			}
+			return false;
+		});
 		
 		
 		//=====================
@@ -5256,6 +6020,25 @@ var Engine = {
 			return false;
 		});
 		
+		//=====================ConstructionClick
+		Engine.Clickables.BuyPermit = document.getElementById("buyPermit");
+		Engine.Clickables.BuyPermit.addEventListener("click", function() {
+			Engine.BuyAPermit();
+			return false;
+		});
+		
+		Engine.Clickables.BuildWarehouse = document.getElementById("BuildWarehouse");
+		Engine.Clickables.BuildWarehouse.addEventListener("click", function() {
+			Engine.BuildAWarehouse();
+			return false;
+		});
+		
+		Engine.Clickables.BuildSkyscraper = document.getElementById("BuildSkyscraper");
+		Engine.Clickables.BuildSkyscraper.addEventListener("click", function() {
+			Engine.BuildASkyscraper();
+			return false;
+		});
+		
 		//===================Gilded
 		//===================Gilded
 		Engine.Clickables.BuyGildedIronMine = document.getElementById("buyGildedIronMine");
@@ -5264,11 +6047,24 @@ var Engine = {
 			return false;
 		});
 		
+				Engine.Clickables.BuyGildedIRefinery = document.getElementById("buyGildedIRefinery");
+				Engine.Clickables.BuyGildedIRefinery.addEventListener("click", function() {
+					Engine.BuyAGildedIRefinery();
+					return false;
+				});
+		
 		Engine.Clickables.BuyGildedCoalMine = document.getElementById("buyGildedCoalMine");
 		Engine.Clickables.BuyGildedCoalMine.addEventListener("click", function() {
 			Engine.BuyAGildedCoalMine();
 			return false;
 		});
+		
+				Engine.Clickables.BuyGildedSRefinery = document.getElementById("buyGildedSRefinery");
+				Engine.Clickables.BuyGildedSRefinery.addEventListener("click", function() {
+					Engine.BuyAGildedSRefinery();
+					return false;
+				});
+		
 		
 		Engine.Clickables.BuyGildedCopperMine = document.getElementById("buyGildedCopperMine");
 		Engine.Clickables.BuyGildedCopperMine.addEventListener("click", function() {
@@ -5276,15 +6072,48 @@ var Engine = {
 			return false;
 		});
 		
+				Engine.Clickables.BuyGildedCRefinery = document.getElementById("buyGildedCRefinery");
+				Engine.Clickables.BuyGildedCRefinery.addEventListener("click", function() {
+					Engine.BuyAGildedCRefinery();
+					return false;
+				});
+		
+		
 		Engine.Clickables.BuyGildedOilWell = document.getElementById("buyGildedOilWell");
 		Engine.Clickables.BuyGildedOilWell.addEventListener("click", function() {
 			Engine.BuyAGildedOilWell();
 			return false;
 		});
 		
+				Engine.Clickables.BuyGildedGRefinery = document.getElementById("buyGildedGRefinery");
+				Engine.Clickables.BuyGildedGRefinery.addEventListener("click", function() {
+					Engine.BuyAGildedGRefinery();
+					return false;
+				});
+		
+				Engine.Clickables.BuyGildedPRefinery = document.getElementById("buyGildedPRefinery");
+				Engine.Clickables.BuyGildedPRefinery.addEventListener("click", function() {
+					Engine.BuyAGildedPRefinery();
+					return false;
+				});
+		
+		
+		
 		Engine.Clickables.BuyGildedLicense = document.getElementById("buyGildedLicense");
 		Engine.Clickables.BuyGildedLicense.addEventListener("click", function() {
 			Engine.BuyAGildedLicense();
+			return false;
+		});
+		
+		Engine.Clickables.BuyGildedEngineer = document.getElementById("buyGildedEngineer");
+		Engine.Clickables.BuyGildedEngineer.addEventListener("click", function() {
+			Engine.BuyAGildedEngineer();
+			return false;
+		});
+		
+		Engine.Clickables.BuyGildedForeman = document.getElementById("buyGildedForeman");
+		Engine.Clickables.BuyGildedForeman.addEventListener("click", function() {
+			Engine.BuyAGildedForeman();
 			return false;
 		});
 		
@@ -5325,11 +6154,38 @@ var Engine = {
 			return false;
 		});
 		
+		
 		//Engine.Clickables.UnlockBuilding = document.getElementById("UnlockBuilding");
 		//Engine.Clickables.UnlockBuilding.addEventListener("click", function() {
 		//	Engine.UnlockBuilding();
 		//	return false;
 		//});
+		
+		//==========================Crime!
+		
+		Engine.Clickables.UnlockCrime = document.getElementById("UnlockCrime");
+		Engine.Clickables.UnlockCrime.addEventListener("click", function() {
+			document.getElementById("CrimeTab2").className = "swMain";
+			return false;
+		});
+		
+		Engine.Clickables.BuyWeedplant = document.getElementById("buyWeedplant");
+		Engine.Clickables.BuyWeedplant.addEventListener("click", function() {
+			Engine.BuyAWeedplant();
+			return false;
+		});
+		
+		Engine.Clickables.SellWeed = document.getElementById("SellWeed");
+		Engine.Clickables.SellWeed.addEventListener("mouseup", function() {
+			Engine.SellWeed();
+			return false;
+		});
+		
+		Engine.Clickables.BuyWeedDealer = document.getElementById("buyWeedDealer");
+		Engine.Clickables.BuyWeedDealer.addEventListener("click", function() {
+			Engine.BuyAWeedDealer();
+			return false;
+		});
 		
 		
 		Engine.Display.Money = document.getElementById("Money");
@@ -5349,8 +6205,8 @@ var Engine = {
 		Engine.Display.IronAntiContract = document.getElementById("IronAntiContract");
 		
 		Engine.Display.IronPS = document.getElementById("IronPS");
-		Engine.Display.IronContractIron = document.getElementById("IronContractIron");
-		Engine.Display.IronContractMoney = document.getElementById("IronContractMoney");
+		Engine.Values.IronContractIron = document.getElementById("IronContractIron");
+		Engine.Values.IronContractMoney = document.getElementById("IronContractMoneyPS");
 		
 	
 		//Refined Iron
@@ -5366,10 +6222,10 @@ var Engine = {
 		
 		Engine.Display.RefIronAntiContract = document.getElementById("RefIronAntiContract");
 		
-		Engine.Display.IRefineryIron = document.getElementById("IRefineryIron");
 		Engine.Display.RefIronPS = document.getElementById("RefIronPS");
-		Engine.Display.RefIronContractRefIron = document.getElementById("RefIronContractRefIron");
-		Engine.Display.RefIronContractMoney = document.getElementById("RefIronContractMoney");
+		Engine.Values.IRefineryIron = document.getElementById("IRefineryIron");
+		Engine.Values.RefIronContractRefIron = document.getElementById("RefIronContractRefIron");
+		Engine.Values.RefIronContractMoney = document.getElementById("RefIronContractMoneyPS");
 		
 	
 		//Motor
@@ -5385,11 +6241,9 @@ var Engine = {
 		
 		Engine.Display.MotorAntiContract = document.getElementById("MotorAntiContract");
 		
-		Engine.Display.MotorFactRefIron = document.getElementById("MotorFactRefIron");
-		Engine.Display.MotorFactSteel = document.getElementById("MotorFactSteel");
 		Engine.Display.MotorPS = document.getElementById("MotorPS");
-		Engine.Display.MotorContractMotor = document.getElementById("MotorContractMotor");
-		Engine.Display.MotorContractMoney = document.getElementById("MotorContractMoney");
+		Engine.Values.MotorContractMotor = document.getElementById("MotorContractMotor");
+		Engine.Values.MotorContractMoney = document.getElementById("MotorContractMoneyPS");
 		
 	
 		//Car
@@ -5405,13 +6259,9 @@ var Engine = {
 		
 		Engine.Display.CarAntiContract = document.getElementById("CarAntiContract");
 		
-		Engine.Display.CarFactMotor = document.getElementById("CarFactMotor");
-		Engine.Display.CarFactMechPart = document.getElementById("CarFactMechPart");
-		Engine.Display.CarFactElec = document.getElementById("CarFactElec");
-		Engine.Display.CarFactGlass = document.getElementById("CarFactGlass");
 		Engine.Display.CarPS = document.getElementById("CarPS");
-		Engine.Display.CarContractCar = document.getElementById("CarContractCar");
-		Engine.Display.CarContractMoney = document.getElementById("CarContractMoney");
+		Engine.Values.CarContractCar = document.getElementById("CarContractCar");
+		Engine.Values.CarContractMoney = document.getElementById("CarContractMoneyPS");
 		
 	
 		//Plane
@@ -5481,7 +6331,7 @@ var Engine = {
 		Engine.Display.MechPartPS = document.getElementById("MechPartPS");
 		
 	
-		//Cons Part
+		//ConsPart
 		Engine.Display.ConsPart = document.getElementById("ConsPart");
 		
 		Engine.Display.ConsPartFact = document.getElementById("ConsPartFact");
@@ -5784,6 +6634,38 @@ var Engine = {
 		Engine.Display.GiftShopCost = document.getElementById("GiftShopCost");
 		
 		
+		//ConstructionTab
+		Engine.Display.Permit = document.getElementById("Permit");
+		Engine.Display.PermitCost = document.getElementById("PermitCost");
+		Engine.Display.Warehouse = document.getElementById("Warehouse");
+		Engine.Display.Skyscraper = document.getElementById("Skyscraper");
+		
+		Engine.Display.WarehouseConsPartCost = document.getElementById("WarehouseConsPartCost");
+		Engine.Display.WarehouseGlassCost = document.getElementById("WarehouseGlassCost");
+		Engine.Display.WarehouseACCost = document.getElementById("WarehouseACCost");
+		Engine.Display.WarehouseSpoolCost = document.getElementById("WarehouseSpoolCost");
+		Engine.Display.WarehouseLightbulbCost = document.getElementById("WarehouseLightbulbCost");
+		Engine.Display.WarehouseBuildTime = document.getElementById("WarehouseBuildTime");
+		
+		Engine.Display.SkyscraperConsPartCost = document.getElementById("SkyscraperConsPartCost");
+		Engine.Display.SkyscraperGlassCost = document.getElementById("SkyscraperGlassCost");
+		Engine.Display.SkyscraperACCost = document.getElementById("SkyscraperACCost");
+		Engine.Display.SkyscraperSpoolCost = document.getElementById("SkyscraperSpoolCost");
+		Engine.Display.SkyscraperLightbulbCost = document.getElementById("SkyscraperLightbulbCost");
+		Engine.Display.SkyscraperBuildTime = document.getElementById("SkyscraperBuildTime");
+		
+		Engine.Display.BuildTime = document.getElementById("BuildTime");
+		
+		
+		//==============CRIMEELEMENTSSSSSSS OHHHH NOOOOO
+		//==============
+		Engine.Display.Weed = document.getElementById("Weed");
+		Engine.Display.WeedPS = document.getElementById("WeedPS");
+		Engine.Display.WeedPlant = document.getElementById("WeedPlant");
+		Engine.Display.WeedPlantCost = document.getElementById("WeedPlantCost");
+		Engine.Display.WeedDealer = document.getElementById("WeedDealer");
+		Engine.Display.WeedDealerCost = document.getElementById("WeedDealerCost");
+		
 		
 		Engine.Display.IronContractMoney = document.getElementById("IronContractMoney");
 		Engine.Display.RefIronContractMoney = document.getElementById("RefIronContractMoney");
@@ -5806,7 +6688,7 @@ var Engine = {
 		Engine.Display.LightbulbContractMoney = document.getElementById("LightbulbContractMoney");
 		
 		
-		//==============Gilded
+		//==============GildedElement
 		//==============
 		Engine.Display.GoldCoinGain = document.getElementById("GoldCoinGain");
 		Engine.Display.GoldCoin = document.getElementById("GoldCoin");
@@ -5815,16 +6697,42 @@ var Engine = {
 		Engine.Display.GildedIronMine = document.getElementById("GildedIronMine");
 		Engine.Display.GildedIronMineCost = document.getElementById("GildedIronMineCost");
 		
+				Engine.Display.GildedIRefinery = document.getElementById("GildedIRefinery");
+				Engine.Display.GildedIRefineryCost = document.getElementById("GildedIRefineryCost");
+				
+		
 		Engine.Display.GildedCoalMine = document.getElementById("GildedCoalMine");
 		Engine.Display.GildedCoalMineCost = document.getElementById("GildedCoalMineCost");
+		
+				Engine.Display.GildedSRefinery = document.getElementById("GildedSRefinery");
+				Engine.Display.GildedSRefineryCost = document.getElementById("GildedSRefineryCost");
+				
 		
 		Engine.Display.GildedCopperMine = document.getElementById("GildedCopperMine");
 		Engine.Display.GildedCopperMineCost = document.getElementById("GildedCopperMineCost");
 		
+				Engine.Display.GildedCRefinery = document.getElementById("GildedCRefinery");
+				Engine.Display.GildedCRefineryCost = document.getElementById("GildedCRefineryCost");
+				
+		
 		Engine.Display.GildedOilWell = document.getElementById("GildedOilWell");
 		Engine.Display.GildedOilWellCost = document.getElementById("GildedOilWellCost");
 		
+				Engine.Display.GildedGRefinery = document.getElementById("GildedGRefinery");
+				Engine.Display.GildedGRefineryCost = document.getElementById("GildedGRefineryCost");
+		
+				Engine.Display.GildedPRefinery = document.getElementById("GildedPRefinery");
+				Engine.Display.GildedPRefineryCost = document.getElementById("GildedPRefineryCost");
+				
+		
 		Engine.Values.GildedLicenseStatus = document.getElementById("GildedLicenseStatus");
+		
+		Engine.Display.GildedEngineer = document.getElementById("GildedEngineer");
+		Engine.Display.GildedEngineerCost = document.getElementById("GildedEngineerCost");
+		
+		Engine.Display.GildedForeman = document.getElementById("GildedForeman");
+		Engine.Display.GildedForemanCost = document.getElementById("GildedForemanCost");
+		
 		
 		
 		
@@ -5868,6 +6776,27 @@ function openCity(evt, cityName) {
 
     // Show the current tab, and add an "active" class to the link that opened the tab
     document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+function openGilded(evt, cityName2) {
+    // Declare all variables
+    var i, tabcontent2, tablinks2;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent2 = document.getElementsByClassName("tabcontent2");
+    for (i = 0; i < tabcontent2.length; i++) {
+        tabcontent2[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks2 = document.getElementsByClassName("tablinks2");
+    for (i = 0; i < tablinks2.length; i++) {
+        tablinks2[i].className = tablinks2[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(cityName2).style.display = "block";
     evt.currentTarget.className += " active";
 }
 

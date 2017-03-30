@@ -6630,20 +6630,13 @@ var Engine = {
 			
 			Engine.Display.MoneyPS.innerHTML = Engine.numberWithCommas(Engine.Values.MoneyPS);
 			
-			Engine.Values.IronContractIron.innerHTML = Engine.Player.IronContract*10;
-			Engine.Values.IronContractMoney.innerHTML = Engine.Player.IronContract*Engine.Player.IronContractMoney;
 			
-			Engine.Values.RefIronContractRefIron.innerHTML = Engine.Player.RefIronContract*10;
-			Engine.Values.RefIronContractMoney.innerHTML = Engine.Player.RefIronContract*Engine.Player.RefIronContractMoney;
 			
 			Engine.Values.MechPartFactSteel = Engine.Player.MechPartFact*5;
 			Engine.Values.MechPartFactRefCopper = Engine.Player.MechPartFact*5;
-			Engine.Values.MechPartContractMechPart = Engine.Player.MechPartContract*10;
 			
 			Engine.Values.MotorFactRefIron = Engine.Player.MotorFact*10;
 			Engine.Values.MotorFactSteel = Engine.Player.MotorFact*5;
-			Engine.Values.MotorContractMotor.innerHTML = Engine.Player.MotorContract*1;
-			Engine.Values.MotorContractMoney.innerHTML = Engine.Player.MotorContract*Engine.Player.MotorContractMoney;
 			
 			Engine.Values.CarFactMotor = Engine.Player.CarFact*2;
 			Engine.Values.CarFactMechPart = Engine.Player.CarFact*10;

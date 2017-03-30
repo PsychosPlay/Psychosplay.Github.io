@@ -7154,6 +7154,7 @@ var Engine = {
 			
 			
 		//ResourceCrime
+			if (Engine.Player.GenCrime > 0) {
 			
 			if (Engine.Player.HighTimer > 0) {
 				document.getElementById("HighTimerResource").className = "swMain";
@@ -7243,7 +7244,7 @@ var Engine = {
 				document.getElementById("HighCaliberResource").className = "swMain";
 			}
 			
-			
+			}
 		
 
 			

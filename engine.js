@@ -2587,9 +2587,10 @@ var Engine = {
 	BuyASolarRoad: function() {
 	if (Engine.Player.Dealership > 0) {
 		if (Engine.Player.SolarArray >= Engine.Player.SolarRoadCost) {
-			if (Engine.Player.Land > 3) {
+			if (Engine.Player.Land > 2) {
 				Engine.Player.SolarRoad++;
 				Engine.Player.Land -= 3;
+				Engine.Player.SolarArray -= Engine.Player.SolarRoadCost;
 				Engine.Player.RawRoad++;
 				Engine.Player.DealerShift = (Math.sqrt(Engine.Player.RawRoad)/10);
 			

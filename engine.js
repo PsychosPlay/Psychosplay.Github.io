@@ -833,6 +833,7 @@ var Engine = {
 		
 		GildedAirportStaff: 0,
 		GildedAirportStaffCost: 20,
+		GildedAirportStaffBase: 0,
 		
 		GildedProgrammer: 0,
 		GildedProgrammerCost: 20,
@@ -3307,6 +3308,7 @@ var Engine = {
 	if (Engine.Player.GoldCoin >= Engine.Player.GildedAirportStaffCost) {
 		Engine.Player.GoldCoin -= Engine.Player.GildedAirportStaffCost;
 		Engine.Player.GildedAirportStaff++;
+		Engine.Player.GildedAirportStaffBase++;
 		Engine.Player.GildedAirportStaffCost = Math.ceil(Engine.Player.GildedAirportStaffCost*1.05);
 			
 		Engine.Display.GoldCoin.innerHTML = Engine.Player.GoldCoin;
@@ -4419,7 +4421,7 @@ var Engine = {
 		Engine.Player.AirportMoney = 500;
 		Engine.Player.PlaneLimit = 0;
 		
-		Engine.Player.GildedAirportStaff = Engine.Player.Hanger + Engine.Player.Terminal + Engine.Player.GiftShop;
+		Engine.Player.GildedAirportStaff = Engine.Player.GildedAirportStaffBase;
 		
 		Engine.Player.Hanger = 0;
 		Engine.Player.HangerCost = 50000;
@@ -4668,7 +4670,9 @@ var Engine = {
 				}
 			}
 			
-			
+			if (Engine.Player.GildedAirportStaffBase == "NaN") {
+				Engine.Player.GildedAirportStaffBase = 0;
+			}
 			if (Engine.Player.ThirtySecondCounter > 29) {
 				Engine.Values.CrimeStart++;
 			}

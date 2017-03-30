@@ -6034,7 +6034,6 @@ var Engine = {
 			Engine.Display.CoalAntiContract.innerHTML = Engine.numberWithCommas(Engine.Player.CoalAntiContract);
 			
 			Engine.Display.CoalPS.innerHTML = Engine.numberWithCommas(Engine.Values.CoalPS);
-			Engine.Display.CoalContractCoal.innerHTML = Engine.numberWithCommas(Engine.Values.CoalContractCoal);
 			Engine.Display.CoalContractMoney.innerHTML = Engine.numberWithCommas(Engine.Values.CoalContractMoney);
 			
 			//Steel
@@ -6050,7 +6049,6 @@ var Engine = {
 			Engine.Display.SteelAntiContract.innerHTML = Engine.numberWithCommas(Engine.Player.SteelAntiContract);
 			
 			Engine.Display.SteelPS.innerHTML = Engine.numberWithCommas(Engine.Values.SteelPS);
-			Engine.Display.SteelContractSteel.innerHTML = Engine.numberWithCommas(Engine.Values.SteelContractSteel);
 			Engine.Display.SteelContractMoney.innerHTML = Engine.numberWithCommas(Engine.Values.SteelContractMoney);
 			
 			//MechPart
@@ -6085,7 +6083,6 @@ var Engine = {
 			Engine.Display.ACAntiContract.innerHTML = Engine.numberWithCommas(Engine.Player.ACAntiContract);
 			
 			Engine.Display.ACPS.innerHTML = Engine.numberWithCommas(Engine.Values.ACPS);
-			Engine.Display.ACContractAC.innerHTML = Engine.numberWithCommas(Engine.Values.ACContractAC);
 			Engine.Display.ACContractMoney.innerHTML = Engine.numberWithCommas(Engine.Values.ACContractMoney);
 			
 			/*
@@ -6107,7 +6104,6 @@ var Engine = {
 			Engine.Display.CopperAntiContract.innerHTML = Engine.numberWithCommas(Engine.Player.CopperAntiContract);
 			
 			Engine.Display.CopperPS.innerHTML = Engine.numberWithCommas(Engine.Values.CopperPS);
-			Engine.Display.CopperContractCopper.innerHTML = Engine.numberWithCommas(Engine.Values.CopperContractCopper);
 			Engine.Display.CopperContractMoney.innerHTML = Engine.numberWithCommas(Engine.Values.CopperContractMoney);
 			
 			//RefCopper
@@ -6123,7 +6119,6 @@ var Engine = {
 			Engine.Display.RefCopperAntiContract.innerHTML = Engine.numberWithCommas(Engine.Player.RefCopperAntiContract);
 			
 			Engine.Display.RefCopperPS.innerHTML = Engine.numberWithCommas(Engine.Values.RefCopperPS);
-			Engine.Display.RefCopperContractRefCopper.innerHTML = Engine.numberWithCommas(Engine.Values.RefCopperContractRefCopper);
 			Engine.Display.RefCopperContractMoney.innerHTML = Engine.numberWithCommas(Engine.Values.RefCopperContractMoney);
 			
 			//Spool
@@ -6139,7 +6134,6 @@ var Engine = {
 			Engine.Display.SpoolAntiContract.innerHTML = Engine.numberWithCommas(Engine.Player.SpoolAntiContract);
 			
 			Engine.Display.SpoolPS.innerHTML = Engine.numberWithCommas(Engine.Values.SpoolPS);
-			Engine.Display.SpoolContractSpool.innerHTML = Engine.numberWithCommas(Engine.Values.SpoolContractSpool);
 			Engine.Display.SpoolContractMoney.innerHTML = Engine.numberWithCommas(Engine.Values.SpoolContractMoney);
 			
 			//Electronic
@@ -6155,7 +6149,6 @@ var Engine = {
 			Engine.Display.ElecAntiContract.innerHTML = Engine.numberWithCommas(Engine.Player.ElecAntiContract);
 			
 			Engine.Display.ElectronicPS.innerHTML = Engine.numberWithCommas(Engine.Values.ElectronicPS);
-			Engine.Display.ElecContractElec.innerHTML = Engine.numberWithCommas(Engine.Values.ElecContractElec);
 			Engine.Display.ElecContractMoney.innerHTML = Engine.numberWithCommas(Engine.Values.ElecContractMoney);
 			
 			/*
@@ -6185,7 +6178,6 @@ var Engine = {
 			Engine.Display.GasAntiContract.innerHTML = Engine.numberWithCommas(Engine.Player.GasAntiContract);
 			
 			Engine.Display.GasPS.innerHTML = Engine.numberWithCommas(Engine.Values.GasPS);
-			Engine.Display.GasContractGas.innerHTML = Engine.numberWithCommas(Engine.Values.GasContractGas);
 			Engine.Display.GasContractMoney.innerHTML = Engine.numberWithCommas(Engine.Values.GasContractMoney);
 			
 			//Plastic
@@ -6197,7 +6189,6 @@ var Engine = {
 			Engine.Display.PlasticContractCost.innerHTML = Engine.numberWithCommas(Engine.Player.PlasticContractCost);
 			
 			Engine.Display.PlasticPS.innerHTML = Engine.numberWithCommas(Engine.Values.PlasticPS);
-			Engine.Display.PlasticContractPlastic.innerHTML = Engine.numberWithCommas(Engine.Values.PlasticContractPlastic);
 			Engine.Display.PlasticContractMoney.innerHTML = Engine.numberWithCommas(Engine.Values.PlasticContractMoney);
 			
 			Engine.Display.PlasticAntiContract.innerHTML = Engine.numberWithCommas(Engine.Player.PlasticAntiContract);
@@ -6243,7 +6234,6 @@ var Engine = {
 			Engine.Display.LightbulbAntiContract.innerHTML = Engine.numberWithCommas(Engine.Player.LightbulbAntiContract);
 			
 			Engine.Display.LightbulbPS.innerHTML = Engine.numberWithCommas(Engine.Values.LightbulbPS);
-			Engine.Display.LightbulbContractLightbulb.innerHTML = Engine.numberWithCommas(Engine.Values.LightbulbContractLightbulb);
 			Engine.Display.LightbulbContractMoney.innerHTML = Engine.numberWithCommas(Engine.Values.LightbulbContractMoney);
 			
 			
@@ -6714,7 +6704,6 @@ var Engine = {
 			
 			Engine.Values.GlassFurnaceSand = Engine.Player.GlassFurnace*15;
 			Engine.Values.GlassContractGlass = Engine.Player.GlassContract*10;
-			Engine.Display.GlassContractGlass.innerHTML = Engine.Values.GlassContractGlass;
 			
 			
 			Engine.Values.LightbulbFactSpool = Engine.Player.LightbulbFact*1;

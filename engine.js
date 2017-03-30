@@ -166,7 +166,9 @@ var Engine = {
 		GoldCoinGain: 0,
 		
 		
-		MoneyPS: 0
+		MoneyPS: 0,
+		
+		CrimeStart: 0,
 	
 	},
 			

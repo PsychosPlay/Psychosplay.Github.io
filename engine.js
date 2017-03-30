@@ -2539,7 +2539,6 @@ var Engine = {
 	BuyADealership: function() {
 	
 	if (Engine.Player.Car > Engine.Player.CarContractCost) {
-	if (Engine.Player.RawCarPS > 9) {
 		if (Engine.Player.Money >= Engine.Player.DealershipCost) {
 			if (Engine.Player.Land > 0) {
 				Engine.Player.Money -= Engine.Player.DealershipCost;
@@ -2560,9 +2559,6 @@ var Engine = {
 		} else {
 			Engine.Status("Not enough Money!"); 
 		}
-	} else {
-		Engine.Status("Need to increase car production!"); 
-	}
 	} else {
 		Engine.Status("Not enough Cars!"); 
 	}
@@ -5257,19 +5253,19 @@ var Engine = {
 					Engine.Status("All A/C Unit Anti-Contracts broken!");
 				}
 			}
-			if (Engine.Player.BuildTime > 0) {
+			if (Engine.Player.Building > 0) {
 				Engine.Player.BuildTime--;
-				if (Engine.Player.BuildTime < 1) {
-					if (Engine.Player.Building = 1) {
-						Engine.Player.Building = 0;
-						Engine.Player.Warehouse++;
-					}
-					if (Engine.Player.Building = 2) {
-						Engine.Player.Building = 0;
-						Engine.Player.Skyscraper++;
-					}
+			}
+			if (Engine.Player.BuildTime < 1) {
+				Engine.Player.BuildTime = 0;
+				if (Engine.Player.Building == 1) {
+					Engine.Player.Building = 0;
+					Engine.Player.Warehouse++;
 				}
-			} else {
+				if (Engine.Player.Building == 2) {
+					Engine.Player.Building = 0;
+					Engine.Player.Skyscraper++;
+				}
 			}
 			Engine.Player.Money += Engine.Player.Warehouse*3000
 			Engine.Player.Money += Engine.Player.Skyscraper*42500
@@ -6369,8 +6365,8 @@ var Engine = {
 			Engine.Display.SkyscraperLightbulbCost.innerHTML = Engine.numberWithCommas(Engine.Player.SkyscraperLightbulbCost);
 			
 			
-			Engine.Player.WarehouseBuildTime = Engine.Player.WarehouseBuildTimeBase/(1 + (Engine.Player.GildedForeman*0.2));
-			Engine.Player.SkyscraperBuildTime = Engine.Player.SkyscraperBuildTimeBase/(1 + (Engine.Player.GildedForeman*0.2));
+			Engine.Player.WarehouseBuildTime = Math.ceil(Engine.Player.WarehouseBuildTimeBase/(1 + (Engine.Player.GildedForeman*0.2)));
+			Engine.Player.SkyscraperBuildTime = Math.ceil(Engine.Player.SkyscraperBuildTimeBase/(1 + (Engine.Player.GildedForeman*0.2)));
 			
 			
 			

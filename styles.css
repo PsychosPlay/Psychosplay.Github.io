@@ -6,8 +6,8 @@
 }
 
 h1 {
-	padding: 8px;
-	font-size: 16px;
+	padding: 2px;
+	font-size: 18px;
 }
 
 h2 {
@@ -61,7 +61,280 @@ table#Iron , table#Iron  th  {
 	visibility: hidden
  }
  
+ .swHideWords {
+	display:none
+ }
+	
  
+.swButtonIron {
+    list-style-type: none;
+    margin: 0;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #ddd;
+}
+
+/* Change background color of links on hover */
+.swButtonIron:hover {background-color: #f1f1f1;}
+ 
+.swButtonCoal {
+    list-style-type: none;
+    margin: 0;
+	color: #ffffff;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #000;
+}
+
+/* Change background color of links on hover */
+.swButtonCoal:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonSteel {
+    list-style-type: none;
+    margin: 0;
+	color: #ffffff;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #3b6e98;
+}
+
+/* Change background color of links on hover */
+.swButtonSteel:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+  
+.swButtonCopper {
+    list-style-type: none;
+    margin: 0;
+	color: #000;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #b87333;
+}
+
+/* Change background color of links on hover */
+.swButtonCopper:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonElec {
+    list-style-type: none;
+    margin: 0;
+	color: #ffffff;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #006600;
+}
+
+/* Change background color of links on hover */
+.swButtonElec:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+
+.swButtonGas {
+    list-style-type: none;
+    margin: 0;
+	color: #000;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #F09000;
+}
+
+/* Change background color of links on hover */
+.swButtonGas:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonPlastic {
+    list-style-type: none;
+    margin: 0;
+	color: #000;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #98fb98;
+}
+
+/* Change background color of links on hover */
+.swButtonPlastic:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonSand {
+    list-style-type: none;
+    margin: 0;
+	color: #000;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f7b985;
+}
+
+/* Change background color of links on hover */
+.swButtonSand:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonGlass {
+    list-style-type: none;
+    margin: 0;
+	color: #000;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #add8e6;
+}
+
+/* Change background color of links on hover */
+.swButtonGlass:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonWood {
+    list-style-type: none;
+    margin: 0;
+	color: #ffffff;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #643D01;
+}
+
+/* Change background color of links on hover */
+.swButtonWood:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonLocked {
+    list-style-type: none;
+    margin: 0;
+	color: #000;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #ff4e4e;
+}
+
+/* Change background color of links on hover */
+.swButtonLocked:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonUnlocked {
+    list-style-type: none;
+    margin: 0;
+	color: #000;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #4ce44c;
+}
+
+/* Change background color of links on hover */
+.swButtonUnlocked:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonGilded {
+    list-style-type: none;
+    margin: 0;
+	color: #000;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #ffe34c;
+}
+
+/* Change background color of links on hover */
+.swButtonGilded:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonRoad {
+    list-style-type: none;
+    margin: 0;
+	color: #ffe34c;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #000;
+}
+
+/* Change background color of links on hover */
+.swButtonRoad:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonProgram {
+    list-style-type: none;
+    margin: 0;
+	color: #66ff66;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #000;
+}
+
+/* Change background color of links on hover */
+.swButtonProgram:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonWhite {
+    list-style-type: none;
+    margin: 0;
+	color: #000;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #FFFFFF;
+}
+
+/* Change background color of links on hover */
+.swButtonWhite:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+.swButtonCrack {
+    list-style-type: none;
+    margin: 0;
+	color: #000;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #FFF09D;
+}
+
+/* Change background color of links on hover */
+.swButtonCrack:hover {
+	background-color: #f1f1f1;
+	color: #000;
+}
+ 
+  
 /** add the same margin to the left of the status box
     but also make the text purple to make it stand out
 	a little bit **/
@@ -138,6 +411,43 @@ ul.tab2 li a:focus, .active {background-color: #ccc;}
 
 /* Style the tab content */
 .tabcontent2 {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+/* Style the list */
+ul.tab3 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Float the list items side by side */
+ul.tab3 li {float: left;}
+
+/* Style the links inside the list items */
+ul.tab3 li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab3 li a:hover {background-color: #ddd;}
+
+/* Create an active/current tablink class */
+ul.tab3 li a:focus, .active {background-color: #ccc;}
+
+/* Style the tab content */
+.tabcontent3 {
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;

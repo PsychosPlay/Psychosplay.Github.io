@@ -784,7 +784,7 @@ var Engine = {
 		AdvElecFactCost: 1000000,
 		AdvElecFactArm: 0,
 		AdvElecContract: 0,
-		AdvElecContractCost: 0,
+		AdvElecContractCost: 3000,
 		AdvElecAntiContract: 0,
 		AdvElecContractMoney: 0,
 		
@@ -4432,8 +4432,10 @@ var Engine = {
 		
 		// Construction
 		Engine.Player.Permit = 0;
+		Engine.Player.PermitCost = 0;
 		Engine.Player.Warehouse = 0;
 		Engine.Player.Skyscraper = 0;
+		Engine.Player.Building = 0;
 		
 		Engine.Player.BuildTime = 0;
 		
@@ -4442,12 +4444,14 @@ var Engine = {
 		Engine.Player.WarehouseGlassCost = 500;
 		Engine.Player.WarehouseACCost = 10;
 		Engine.Player.WarehouseLightbulbCost = 250;
+		Engine.Player.WarehouseBuildTimeBase = 120;
 		
 		Engine.Player.SkyscraperConsPartCost = 5000;
 		Engine.Player.SkyscraperSpoolCost = 300;
 		Engine.Player.SkyscraperGlassCost = 10000;
 		Engine.Player.SkyscraperACCost = 200;
 		Engine.Player.SkyscraperLightbulbCost = 4000;
+		Engine.Player.SkyscraperBuildTimeBase = 1200;
 		
 		
 		Engine.Player.ThirtySecondCounter = 0;
@@ -4475,10 +4479,10 @@ var Engine = {
 		//Advanced Electronic
 		Engine.Player.AdvElectronic = 0;
 		Engine.Player.AdvElecFact = 0;
-		Engine.Player.AdvElecFactCost = 0;
+		Engine.Player.AdvElecFactCost = 1000000;
 		Engine.Player.AdvElecFactArm = 0;
 		Engine.Player.AdvElecContract = 0;
-		Engine.Player.AdvElecContractCost = 1000000;
+		Engine.Player.AdvElecContractCost = 3000;
 		Engine.Player.AdvElecAntiContract = 0;
 		Engine.Player.AdvElecContractMoney = 0;
 		

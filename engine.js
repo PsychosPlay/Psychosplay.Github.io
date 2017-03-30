@@ -4669,6 +4669,9 @@ var Engine = {
 			
 			
 			if (Engine.Player.ThirtySecondCounter > 29) {
+				Engine.Values.CrimeStart++;
+			}
+			if (Engine.Values.CrimeStart > 3) {
 				if (Engine.Player.NoCrime == 0) {
 				if (Engine.Player.Money == 150) {
 					if (Engine.Values.MoneyPS == 0) {

@@ -4593,7 +4593,7 @@ var Engine = {
 	Save: function() {
 		var tmpSavefile = JSON.stringify(Engine.Player);
 		
-		window.localStorage.setItem("savefile", tmpSavefile);
+		window.localStorage.setItem("VMsavefile", tmpSavefile);
 		
 		Engine.Status("Saved!");
 		
@@ -4602,13 +4602,13 @@ var Engine = {
 	// And we need a new function for load
 	Load: function() {
 		
-		if (!window.localStorage.getItem("savefile")) {
+		if (!window.localStorage.getItem("VMsavefile")) {
 			
 			Engine.Status("No save file present");
 			
 		} else {
 			
-			var tmpSavefile = window.localStorage.getItem("savefile");
+			var tmpSavefile = window.localStorage.getItem("VMsavefile");
 			
 			Engine.Player = JSON.parse(tmpSavefile);
 			
@@ -4620,13 +4620,13 @@ var Engine = {
 	
 	Delete: function() {
 		
-		if (!window.localStorage.getItem("savefile")) {
+		if (!window.localStorage.getItem("VMsavefile")) {
 			
 			Engine.Status("No save file present for deletion");
 			
 		} else {
 			
-			window.localStorage.removeItem("savefile");
+			window.localStorage.removeItem("VMsavefile");
 			
 			Engine.Status("Deleted successfully!");
 			
@@ -4689,7 +4689,7 @@ var Engine = {
 					Engine.Status("Sold a gold coin to stay in business!");
 					Engine.Display.Money.innerHTML = Engine.numberWithCommas(Engine.Player.Money);
 				} else {
-					window.localStorage.removeItem("savefile");
+					window.localStorage.removeItem("VMsavefile");
 					var modal = document.getElementById('myModal');
 					modal.style.display = "block";
 					Engine.AutoSave = 0
@@ -4699,7 +4699,7 @@ var Engine = {
 			if (Engine.AutoSave >= 30) {
 				var tmpSavefile = JSON.stringify(Engine.Player);
 		
-				window.localStorage.setItem("savefile", tmpSavefile);
+				window.localStorage.setItem("VMsavefile", tmpSavefile);
 				
 				Engine.Status("Autosaved!");
 				
@@ -9208,7 +9208,7 @@ var Engine = {
 		Engine.IdleTimer();
 		
 		// To autoload you could do a savefile check here like so...
-		if (window.localStorage.getItem("savefile")) {
+		if (window.localStorage.getItem("VMsavefile")) {
 			Engine.Load();
 		}
 		

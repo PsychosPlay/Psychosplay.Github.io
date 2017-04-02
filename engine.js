@@ -4508,6 +4508,7 @@ var Engine = {
 		Engine.Player.GenCrime = 0;
 		Engine.Player.High = 0;
 		Engine.Player.HighTimer = 0;
+		Engine.Player.NoCrime = 0;
 		
 		//PlayerWeed
 		Engine.Player.Weed = 0;
@@ -4675,7 +4676,7 @@ var Engine = {
 			if (Engine.Player.GildedAirportStaffBase == "NaN") {
 				Engine.Player.GildedAirportStaffBase = 0;
 			}
-			if (Engine.Player.ThirtySecondCounter > 29) {
+			if (Engine.AutoSave > 29) {
 				Engine.Values.CrimeStart++;
 			}
 			if (Engine.Values.CrimeStart > 3) {
@@ -7437,7 +7438,7 @@ var Engine = {
 		});
 		
 		document.getElementById("save").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				//Engine.DebugMenu();
 				return false;
 			}
@@ -7456,7 +7457,7 @@ var Engine = {
 		});
 		
 		document.getElementById("delete").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.Testing();
 				return false;
 			}
@@ -7477,7 +7478,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyironcontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakAIronContract();
 				return false;
 			}
@@ -7510,7 +7511,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyrefironcontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakARefIronContract();
 				return false;
 			}
@@ -7530,7 +7531,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyMotorcontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakAMotorContract();
 				return false;
 			}
@@ -7556,7 +7557,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyCarcontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakACarContract();
 				return false;
 			}
@@ -7589,7 +7590,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyCoalcontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakACoalContract();
 				return false;
 			}
@@ -7621,7 +7622,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buysteelcontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakASteelContract();
 				return false;
 			}
@@ -7662,7 +7663,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyACcontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakAACContract();
 				return false;
 			}
@@ -7688,7 +7689,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyCoppercontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakACopperContract();
 				return false;
 			}
@@ -7720,7 +7721,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyrefCoppercontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakARefCopperContract();
 				return false;
 			}
@@ -7740,7 +7741,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buySpoolcontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakASpoolContract();
 				return false;
 			}
@@ -7766,7 +7767,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyEleccontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakAElecContract();
 				return false;
 			}
@@ -7800,7 +7801,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyGascontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakAGasContract();
 				return false;
 			}
@@ -7820,7 +7821,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyPlasticcontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakAPlasticContract();
 				return false;
 			}
@@ -7848,7 +7849,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyGlasscontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakAGlassContract();
 				return false;
 			}
@@ -7868,7 +7869,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyLightbulbcontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakALightbulbContract();
 				return false;
 			}
@@ -8034,7 +8035,7 @@ var Engine = {
 		});
 		
 		document.getElementById("buyAdvEleccontract").onmouseup = function(event) {
-			if (event.which == 2) {
+			if (event.which == 3) {
 				Engine.BreakAAdvElecContract();
 				return false;
 			}
